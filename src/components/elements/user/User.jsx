@@ -37,7 +37,7 @@ const User = () => {
 
     return (
         <div>
-            <h1>Все пользователи</h1>
+            <h1>Alle User</h1>
             <ul>
                 {
                     users.map(user => (

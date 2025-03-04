@@ -39,7 +39,6 @@ function SignUp() {
         <div className="signup-page">
             <form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2 className="signup-header">Registrierung</h2>
-                <br/>
                 <label className="signup-label">
                     <span className="signup-label-text">Benutzername</span>
                     <input
@@ -76,7 +75,7 @@ function SignUp() {
                     )}
                 </label>
                 <button type="submit" className="signup-button">
-                    Registrieren
+                Registrieren
                 </button>
                 <p className="text-signup">Sie haben bereits Acount?</p>
                 <button className="signup-switch-button" onClick={() => navigate("/")}>

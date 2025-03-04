@@ -15,8 +15,18 @@ const userSlice = createSlice({
             state.token = action.payload.token; // pomenqtj
             localStorage.setItem("token", action.payload.token); // pomenqtj
         },
+        setUser: (state, action) => {
+            state.user = action.payload.user;
+            localStorage.setItem("user", action.payload.user);
+        },
+        logoutUser: (state) => {
+            state.user = null;
+            state.token = null;
+            localStorage.removeItem("user");
+            localStorage.removeItem("token");
+        },
     },
 });
 
-export const { setToken } = userSlice.actions;
+export const { setToken, setUser, logoutUser } = userSlice.actions;
 export default userSlice.reducer;

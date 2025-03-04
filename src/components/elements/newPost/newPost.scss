@@ -9,7 +9,7 @@ body {
 }
 
 
-.signup-page {
+.newpost-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ body {
   padding: 20px;
 }
 
-.signup-form {
+.newpost-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -32,25 +32,25 @@ body {
   width: 100%;
 }
 
-.signup-header {
+.newpost-header {
   font-size: 24px;
   font-weight: bold;
   color: #000000;
   text-align: center;
 }
 
-.signup-label {
+.newpost-label {
   display: flex;
   flex-direction: column;
   font-size: 16px;
   color: #000000;
 }
 
-.signup-label-text {
+.newpost-label-text {
   margin-bottom: 5px;
 }
 
-.signup-input {
+.newpost-input {
   padding: 8px;
   border: 1px solid #000000;
   border-radius: 5px;
@@ -60,19 +60,19 @@ body {
   transition: all 0.3s ease;
 }
 
-.signup-input:focus {
+.newpost-input:focus {
   outline: none;
   border-color: #FF6A4D;
   box-shadow: 0 0 8px rgba(255, 106, 77, 1);
 }
 
-.signup-error {
+.newpost-error {
   color: #FF6A4D;
   font-size: 14px;
   margin-top: 8px;
 }
 
-.signup-button {
+.newpost-button {
   margin: 15px 0;
   padding: 12px;
   background-color: #FF6A4D;
@@ -86,26 +86,12 @@ body {
   width: 100%;
 }
 
-.signup-button:hover {
+.newpost-button:hover {
   background-color: #FF6A4D;
   box-shadow: 0 0 10px rgba(255, 106, 77, 0.8);
 }
 
-.signup-switch-button {
-  margin-top: 5px;
-  text-align: center;
-  font-size: 16px;
-  color: #000000;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  transition: all 0.3s ease;
-}
 
-.signup-switch-button:hover {
-  text-decoration: none;
-}
 
 .text-signup {
   margin-top: 20px;
@@ -117,17 +103,9 @@ body {
 
 }
 
-.signup-footer {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 12px;
-  color: #000000;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
 
 @media (max-width: 480px) {
-  .signup-form {
+  .newpost-form {
     padding: 20px;
     max-width: 90%;
   }

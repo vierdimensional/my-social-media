@@ -5,11 +5,10 @@ const Nav = () => {
     return (
         <div>
             <nav>
-                <Link to="/" > Home</Link>
+                <Link to="/" > SignIn</Link>
                 <Link to="/profile" > Profile</Link>
                 <Link to="/feed" > Feed</Link>
-                <Link to="/search" > Serch</Link>
-                <Link to="/signUp" > SignUp</Link>
+                <Link to="/search" > Search</Link>
             </nav>
         </div>
     );
