@@ -1,0 +1,13 @@
+.last-posts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  background: #ffffff;
+  overflow: hidden;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/*# sourceMappingURL=lastpost.css.map */

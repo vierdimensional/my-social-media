@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import Search from "../search/Search";
 
 const Nav = () => {
     return (
@@ -7,8 +8,7 @@ const Nav = () => {
             <nav>
                 <Link to="/" > SignIn</Link>
                 <Link to="/profile" > Profile</Link>
-                <Link to="/feed" > Feed</Link>
-                <Link to="/search" > Search</Link>
+                <Search/>
             </nav>
         </div>
     );

@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.feed-container {
+  display: flex;
+  height: 100vh;
+  gap: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.profile-section {
+  flex: 0 0 20%;
+  background: #f0f2f5;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.feed-section {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+}
+
+.user-section {
+  flex: 0 0 20%;
+  background: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.feed-posts {
+  flex: 0 0 40%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 15px;
+}
+
+.feed-post {
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #dc3545;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+.scroll-to-top:hover {
+  background: rgb(189.2151898734, 32.7848101266, 47.7721518987);
+}
+
+/*# sourceMappingURL=feed.css.map */

@@ -1,0 +1,106 @@
+.createProfile {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.createProfile h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #050505;
+  text-align: center;
+}
+.createProfile .new-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.createProfile .new-post-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+.createProfile .new-post-form .form-group label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #65676b;
+}
+.createProfile .new-post-form .form-group input,
+.createProfile .new-post-form .form-group textarea {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #050505;
+  background: #f0f2f5;
+  transition: border 0.3s ease;
+}
+.createProfile .new-post-form .form-group input:focus,
+.createProfile .new-post-form .form-group textarea:focus {
+  outline: none;
+  border-color: #1877f2;
+}
+.createProfile .new-post-form .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.createProfile .new-post-form button {
+  background: #1877f2;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.createProfile .new-post-form button:hover {
+  background: rgb(11.4549180328, 95.1639344262, 203.5450819672);
+}
+.createProfile .new-post-form button:disabled {
+  background: rgb(120.5655737705, 175.8524590164, 247.4344262295);
+  cursor: not-allowed;
+}
+.createProfile .error-msg {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}
+.createProfile .success-msg {
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+  text-align: center;
+}
+
+.back-to-profile-btn {
+  margin: 10px 0 0 200px;
+  background: #1877f2;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.back-to-profile-btn:hover {
+  background: rgb(11.4549180328, 95.1639344262, 203.5450819672);
+}
+
+.delete-profile-btn {
+  WIDTH: 150px;
+  height: 20px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.delete-profile-btn:hover {
+  transform: scale(1.1);
+}
+
+/*# sourceMappingURL=editMyProfile.css.map */

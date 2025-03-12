@@ -1,6 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./signUp.scss";
 
 function SignUp() {
@@ -75,12 +75,14 @@ function SignUp() {
                     )}
                 </label>
                 <button type="submit" className="signup-button">
-                Registrieren
+                    Registrieren
                 </button>
-                <p className="text-signup">Sie haben bereits Acount?</p>
-                <button className="signup-switch-button" onClick={() => navigate("/")}>
-                    Zu Login
-                </button>
+
+                <p className="text-signup">Sie haben bereits Acount? <Link to="/signin"
+                                                                            className="signin-switch-link">Zu Login</Link>
+                </p>
+
+
                 <p className="signup-footer">© {new Date().getFullYear()}. All rights reserved</p>
             </form>
         </div>
