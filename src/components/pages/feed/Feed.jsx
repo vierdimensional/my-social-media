@@ -9,6 +9,7 @@ import Nav from "../../elements/nav/Nav";
 
 const Feed = () => {
     return (
+        <div className="box-content">
         <div className="dashboard-layout">
             <aside className="sidebar-left">
                 <Profile/>
@@ -21,6 +22,7 @@ const Feed = () => {
             <aside className="sidebar-right">
                 <User/>
             </aside>
+        </div>
         </div>
 );
 };

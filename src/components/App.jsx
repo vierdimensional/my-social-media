@@ -9,6 +9,7 @@ import EditMyProfile from "./pages/editMyProfile/EditMyProfile";
 import Search from "./elements/search/Search";
 import Nav from "./elements/nav/Nav";
 import Posts from "./elements/posts/Posts";
+import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
 import "./app.scss";
 
 
@@ -62,6 +63,7 @@ const App = () => {
                 <Route path='/search' element={<Search />} />
                 <Route path='/editmyprofile' element={<EditMyProfile />} />
                 <Route path='/posts' element={<Posts />} />
+                <Route path="*" element={<NotFoundPage />} />
 
 
             </Routes>

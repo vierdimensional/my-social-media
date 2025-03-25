@@ -1,6 +1,92 @@
+$primary-color: #FF6A4D;
+$light-gray: #f0f2f5;
+$text-color: #000000;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
 
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $light-gray;
+  padding: 20px;
+}
 
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 
-.filter-container{
-  width: 600px; // 45% der Gesamtbreite
+  label {
+    font-size: 16px;
+    color: $text-color;
+  }
+
+  select {
+    @extend .filter-input;
+  }
+}
+
+.filtered-posts {
+  width: 100%;
+  max-width: 600px;
+
+  .post {
+    background: $background-white;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      font-size: 18px;
+      color: $text-color;
+    }
+
+    p {
+      color: $secondary-text-color;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.filter-btn {
+  width: 80px;
+  background: $text-color;
+  color: $background-white;
+  border: none;
+  padding: 5px 8px;
+  font-size: 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: darken($text-color, 10%);
+  }
+}
+
+.filter-input {
+  padding: 8px;
+  border: 1px solid $text-color;
+  border-radius: 5px;
+  background-color: $background-white;
+  color: $text-color;
+  font-size: 16px;
+  transition: all 0.3s ease;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+    box-shadow: 0 0 5px rgba($primary-color, 0.5);
+  }
 }

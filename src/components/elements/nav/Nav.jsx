@@ -114,6 +114,7 @@ const Nav = () => {
     };
 
     return (
+        <div className="box-content">
         <div className="nav-container">
             <nav className="nav">
                 <Link to="/feed" className="nav-link"><FontAwesomeIcon icon={faHome} /> Home</Link>
@@ -131,6 +132,7 @@ const Nav = () => {
                 <Link to="/MyProfile" className="nav-link"><FontAwesomeIcon icon={faUser} /> Profile</Link>
 
             </nav>
+        </div>
         </div>
     );
 };

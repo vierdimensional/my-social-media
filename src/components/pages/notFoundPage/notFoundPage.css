@@ -1,0 +1,47 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f0f2f5;
+  text-align: center;
+  padding: 20px;
+}
+
+.not-found-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+
+.not-found-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.not-found-text {
+  color: #65676b;
+  margin-bottom: 20px;
+}
+
+.not-found-button {
+  width: 80px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 5px 8px;
+  font-size: 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.not-found-button:hover {
+  background: black;
+}
+
+/*# sourceMappingURL=notFoundPage.css.map */
