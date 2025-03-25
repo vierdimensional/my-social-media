@@ -4,7 +4,6 @@ import NewPost from "../../elements/newPost/NewPost";
 const Post = () => {
     return (
         <div>
-            <NewPost/>
         </div>
     );
 };

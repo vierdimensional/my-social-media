@@ -2,76 +2,74 @@
   max-width: 400px;
   margin: 40px auto;
   text-align: center;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-.search-container h1 {
+.search-container h2 {
   font-size: 20px;
-  color: #333;
-}
-
-.search-box {
+  color: #050505;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+  justify-content: center;
 }
-
-.search-icon {
-  position: absolute;
-  left: 10px;
-  font-size: 16px;
-  color: #333;
+.search-container h2 svg {
+  margin-right: 8px;
 }
-
-input {
-  width: 100%;
-  padding: 8px 8px 8px 30px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.search-container p {
   font-size: 14px;
+  color: #65676b;
+  margin-top: 10px;
 }
-
-.search-results {
+.search-container p.error-msg {
+  color: #FF4D58;
+}
+.search-container .search-results {
   list-style: none;
   padding: 0;
+  margin-top: 20px;
 }
-.search-results li {
+.search-container .search-results li {
   display: flex;
   align-items: center;
   background: #ffffff;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   transition: background 0.3s ease;
+  cursor: pointer;
 }
-.search-results li:hover {
-  background: rgb(246.5, 246.5, 246.5);
+.search-container .search-results li:hover {
+  background: #E8ECEF;
 }
-.search-results li a {
-  text-decoration: none;
-  color: #333;
-  display: flex;
-  align-items: center;
-}
-.search-results li .miniAvatar {
-  width: 30px;
-  height: 30px;
+.search-container .search-results li img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
 }
-
-.error {
-  color: red;
-  font-size: 14px;
+.search-container .search-results li span {
+  font-weight: bold;
+  color: #050505;
 }
-
-.no-results {
-  color: gray;
+.search-container .back-to-feed-btn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #FF6A4D;
+  color: white;
+  border: none;
+  border-radius: 4px;
   font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+.search-container .back-to-feed-btn svg {
+  margin-right: 8px;
+}
+.search-container .back-to-feed-btn:hover {
+  background-color: rgb(255, 63.308988764, 26);
 }
 
 /*# sourceMappingURL=search.css.map */

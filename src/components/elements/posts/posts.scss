@@ -1,0 +1,168 @@
+$primary-color: #FF6A4D;
+$light-gray: #f0f2f5;
+$text-color: #000000;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: $light-gray;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Hauptcontainer
+.posts-container {
+  width: 100%;
+  max-width: 1005px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $background-white;
+  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Bereich für die ganze Postliste
+.posts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+// Einzelner Post-Container
+.posts-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.posts-post {
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.posts-user {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+// Post-Header oder Steuerleiste (z. B. Filter, Likes, Buttons)
+.posts-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+// Titel des Beitrags
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+}
+
+// Beschreibung des Beitrags
+.post-description {
+  font-size: 16px;
+  color: $secondary-text-color;
+  text-align: left;
+  line-height: 1.5;
+}
+
+// Medien (Bild/Video)
+.post-media {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+
+  img,
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Scroll-to-top Button
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: $text-color;
+  color: $background-white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+// Like & Delete Buttons
+.like-button,
+.delete_btn {
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: $secondary-text-color;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.like-button {
+  margin-right: 10px;
+}
+
+.delete_btn {
+  margin-left: 10px;
+  color: $text-color;
+}
+
+// Textinfos zu Post-Autor
+.author-name,
+.post-likes,
+.post-author {
+  font-size: 14px;
+  color: $secondary-text-color;
+}
+
+// Autoren-Avatar
+.author-avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}

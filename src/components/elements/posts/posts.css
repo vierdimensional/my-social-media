@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f2f5;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.posts-container {
+  width: 100%;
+  max-width: 1005px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.posts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.posts-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.posts-post {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.posts-user {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+.posts-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+}
+
+.post-description {
+  font-size: 16px;
+  color: #65676b;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.post-media {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.post-media img,
+.post-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+.scroll-to-top:hover {
+  background-color: #FF6A4D;
+}
+
+.like-button,
+.delete_btn {
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: #65676b;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.like-button:hover,
+.delete_btn:hover {
+  color: #FF6A4D;
+}
+
+.like-button {
+  margin-right: 10px;
+}
+
+.delete_btn {
+  margin-left: 10px;
+  color: #000000;
+}
+
+.author-name,
+.post-likes,
+.post-author {
+  font-size: 14px;
+  color: #65676b;
+}
+
+.author-avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=posts.css.map */

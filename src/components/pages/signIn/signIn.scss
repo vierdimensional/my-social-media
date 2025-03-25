@@ -1,4 +1,11 @@
-
+$primary-color: #FF6A4D;
+$light-gray: #E8ECEF;
+$text-color: #050505;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
+$error-color: #FF4D58;
+$success-color: #4DFFE2;
 
 .signin-page {
   display: flex;
@@ -6,8 +13,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: #000000;
   padding: 20px;
+  font-family: "Roboto", sans-serif;
+
 }
 
 .signin-form {
@@ -15,13 +23,15 @@
   flex-direction: column;
   gap: 20px;
   padding: 40px;
-  border: 2px solid #ffffff;
+  border: 2px solid $border-color;
   border-radius: 10px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: $background-white;
   max-width: 350px;
   width: 100%;
 }
+
+
+
 
 .signin-header {
   font-size: 24px;

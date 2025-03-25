@@ -1,118 +1,234 @@
+$primary-color: #FF6A4D;
+$light-gray: #E8ECEF;
+$text-color: #050505;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
+$error-color: #FF4D58;
+$success-color: #4DFFE2;
+
+.profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: "Roboto", sans-serif;
+}
+
 .profile-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 350px;
-  background: #ffffff;
-  overflow: hidden;
-  text-align: center;
-  font-family: Arial, sans-serif;
+  background: $background-white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 20px;
-}
-
-.profile-header {
-  padding: 50px 20px 20px;
-}
-
-.profile-avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 3px solid #ffffff;
-  margin-top: -40px;
-}
-
-.profile-job {
-  font-size: 14px;
-  color: #666;
-  margin-top: 5px;
-}
-
-.profile-bio {
-  font-size: 14px;
-  color: #444;
-  padding: 10px;
-}
-
-.profile-stats {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 15px;
-  border-top: 1px solid #ddd;
-  font-size: 14px;
-}
-
-.profile-menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  text-align: left;
+  gap: 20px;
+
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .avatar-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid $light-gray;
+      margin-bottom: 15px;
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      margin: 10px 0 5px;
+      font-size: 24px;
+      color: $text-color;
+    }
+
+    .profile-age {
+      font-size: 16px;
+      color: $secondary-text-color;
+      margin: 0 0 10px;
+    }
+
+    .profile-bio {
+      font-size: 14px;
+      color: $text-color;
+      margin: 10px 0;
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    .profile-balance {
+      margin-top: 10px;
+      font-size: 14px;
+      color: $secondary-text-color;
+
+      .balance-amount {
+        font-weight: bold;
+        color: $text-color;
+      }
+    }
+  }
+
+  .profile-stats {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: 15px 0;
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: $background-white;
+
+      .stat-value {
+        font-size: 18px;
+        font-weight: bold;
+        color: $text-color;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: $secondary-text-color;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .profile-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+
+    .menu-button {
+      padding: 8px 12px;
+      background: $background-white;
+      border: 1px solid $border-color;
+      border-radius: 4px;
+      font-size: 14px;
+      color: $text-color;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .profile-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+
+    .edit-profile-btn {
+      background: $primary-color;
+      color: $background-white;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: text-decoration 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .logout-btn {
+      background: $background-white;
+      color: $text-color;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid $text-color;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+
+      &:hover {
+        text-decoration: underline;
+        background: $background-white;
+        color: $text-color;
+      }
+    }
+  }
+
+  .profile-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: $secondary-text-color;
+  }
 }
 
-.profile-menu button {
-  background: none;
-  border: none;
-  text-align: left;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 10px;
-  transition: all 0.3s ease;
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 15px;
+  color: $secondary-text-color;
 }
 
-.profile-menu button:hover {
-  color: #000;
-  text-decoration: underline;
-}
-
-.profile-view-btn,
-.logout-btn {
-  border: none;
-  padding: 12px;
-  width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 5px;
-}
-
-.profile-view-btn {
-  background-color: #FF6A4D;
-  color: white;
-}
-
-.profile-view-btn:hover {
-  border-color: #FF6A4D;
-  box-shadow: 0 0 8px rgba(255, 106, 77, 1);
-}
-
-.logout-btn {
-  background-color: #dc3545;
-  color: white;
-}
-
-.logout-btn:hover {
-  background-color: #a71d2a;
-  box-shadow: 0 0 10px rgba(220, 53, 69, 0.8);
-}
-
-.profile-footer {
-  font-size: 12px;
-  color: #000000;
+.profile-error {
+  background: lighten($error-color, 40%);
+  padding: 20px;
+  border-radius: 8px;
   text-align: center;
-  margin-top: 15px;
-  transition: all 0.3s ease;
-}
+  margin: 20px auto;
+  max-width: 600px;
 
-.profile-footer:hover {
-  color: #FF6A4D;
-}
+  p {
+    color: $error-color;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
 
-@media (max-width: 480px) {
-  .profile-card {
-    padding: 20px;
-    max-width: 90%;
+  button {
+    background: $background-white;
+    border: 1px solid $error-color;
+    color: $error-color;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      text-decoration: underline;
+      background: $background-white;
+      color: $error-color;
+    }
   }
 }

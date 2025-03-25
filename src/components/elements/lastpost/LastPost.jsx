@@ -59,13 +59,13 @@ const LastPost = () => {
             alert("✅ Beitrag erfolgreich gelöscht!");
         } catch (error) {
             console.error("Fehler beim Löschen des Beitrags:", error);
-            alert("❌ Fehler beim Löschen des Beitrags.");
+            alert("Fehler beim Löschen des Beitrags.");
         }
     };
 
     if (loading) return <p>⏳ Posts werden geladen...</p>;
-    if (error) return <p className="error">❌ {error}</p>;
-    if (posts.length === 0) return <p>📭 Keine eigenen Posts gefunden.</p>;
+    if (error) return <p className="error"> {error}</p>;
+    if (posts.length === 0) return <p> Keine eigenen Posts gefunden.</p>;
 
     return (
         <div className="last-posts">
@@ -96,7 +96,7 @@ const LastPost = () => {
                     </div>
 
                     <div className="post-likes">
-                        <span>❤️ {post.likes.length}</span>
+                        <span>{post.likes.length}</span>
                         <button className="delete_btn" onClick={() => deletePost(post._id)}>🗑</button>
                     </div>
                 </div>

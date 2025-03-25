@@ -25,14 +25,14 @@ const NewPost = () => {
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Ошибка: ${response.status}`);
+                    throw new Error(`Fehler: ${response.status}`);
                 }
 
                 const data = await response.json();
-                console.log("Данные постов: ", data);
+                console.log("Post-Daten: ", data);
                 setPosts(data);
             } catch (error) {
-                console.error("Ошибка при загрузке постов:", error);
+                console.error("Fehler beim Laden der Posts:", error);
             }
         }
 
@@ -59,29 +59,58 @@ const NewPost = () => {
             });
 
             if (!response.ok) {
-                throw new Error(`Ошибка: ${response.status}`);
+                throw new Error(`Fehler: ${response.status}`);
             }
 
             const createdPost = await response.json();
             setPosts([createdPost, ...posts]); // Neuer Post wird zur Liste hinzugefügt
             setNewPost({ title: '', description: '', status: '', image: '', video: '' }); // Formular zurücksetzen
         } catch (error) {
-            console.error("Ошибка при создании поста:", error);
+            console.error("Fehler beim Erstellen des Posts:", error);
         }
     };
 
     return (
-        <div>
-            <h2>Создать новый пост</h2>
-            <form className="newpost-form" onSubmit={handleSubmit}>
-                <input className="newpost-title" type="text" name="title" value={newPost.title} onChange={handleChange} placeholder="Заголовок" required />
-                <textarea className="newpost-description" name="description" value={newPost.description} onChange={handleChange} placeholder="Описание" required />
-                <input className="newpost-image" type="text" name="image" value={newPost.image} onChange={handleChange} placeholder="Ссылка на изображение" />
-                <input className="newpost-video" type="text" name="video" value={newPost.video} onChange={handleChange} placeholder="Ссылка на видео" />
-                <button className="newpost-button" type="submit">Опубликовать</button>
+        <div className="new-post-section">
+            <h2 className="new-post-header">Neuen Post erstellen</h2>
+
+            <form className="new-post-form" onSubmit={handleSubmit}>
+                <input
+                    className="new-post-input"
+                    type="text"
+                    name="title"
+                    value={newPost.title}
+                    onChange={handleChange}
+                    placeholder="Titel"
+                    required
+                />
+                <textarea
+                    className="new-post-input"
+                    name="description"
+                    value={newPost.description}
+                    onChange={handleChange}
+                    placeholder="Beschreibung"
+                    required
+                />
+                <input
+                    className="new-post-input"
+                    type="text"
+                    name="image"
+                    value={newPost.image}
+                    onChange={handleChange}
+                    placeholder="Link zum Bild"
+                />
+                <input
+                    className="new-post-input"
+                    type="text"
+                    name="video"
+                    value={newPost.video}
+                    onChange={handleChange}
+                    placeholder="Link zum Video"
+                />
+                <button className="new-post-button" type="submit">Veröffentlichen</button>
             </form>
 
-            <h2>Все посты</h2>
             <div className="profile-buttons">
                 {posts.map((post, index) => (
                     <Link to="/feed" key={index}>
@@ -91,6 +120,7 @@ const NewPost = () => {
             </div>
         </div>
     );
+
 };
 
 export default NewPost;

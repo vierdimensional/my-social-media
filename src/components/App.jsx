@@ -8,7 +8,9 @@ import SignUp from "./pages/signUp/SignUp";
 import EditMyProfile from "./pages/editMyProfile/EditMyProfile";
 import Search from "./elements/search/Search";
 import Nav from "./elements/nav/Nav";
+import Posts from "./elements/posts/Posts";
 import "./app.scss";
+
 
 /*
 const RedirectHandler = () => {
@@ -59,6 +61,8 @@ const App = () => {
                 <Route path='/feed' element={<Feed />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/editmyprofile' element={<EditMyProfile />} />
+                <Route path='/posts' element={<Posts />} />
+
 
             </Routes>
         </BrowserRouter>

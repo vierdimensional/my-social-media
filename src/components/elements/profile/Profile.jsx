@@ -3,6 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser, setUser } from "../../../features/features";
 import { useNavigate } from "react-router-dom";
 import "./profile.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faUser,
+    faRss,
+    faUsers,
+    faCog,
+    faUserFriends
+} from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -54,7 +62,7 @@ const Profile = () => {
     return (
         <div className="profile-card">
             <div className="profile-header">
-                <img src={profileData?.avatar || "/sbcf-default-avatar.png"} alt="Avatar" className="profile-avatar" />
+                <img src={profileData?.avatar || "/sbcf-default-avatar.png"} alt="Avatar" className="profile-avatar"/>
                 <h2>{profileData?.fullName || "Unbekannter Benutzer"}</h2>
                 <p className="profile-job">{profileData?.jobTitle || ""}</p>
                 <p className="profile-bio">{profileData?.bio || "Keine Bio vorhanden"}</p>
@@ -65,11 +73,18 @@ const Profile = () => {
                 <div><strong>{profileData?.following || 0}</strong> Gefolgt</div>
             </div>
             <div className="profile-menu">
-                {["profile", "feed", "followers", "following", "settings"].map((route) => (
-                    <button key={route} onClick={() => navigate(`/${route}`)}>
-                        {route.charAt(0).toUpperCase() + route.slice(1)}
-                    </button>
-                ))}
+                <button className="menu-button" onClick={() => navigate("/myprofile")}>
+                    <FontAwesomeIcon icon={faUser}/> Profile
+                </button>
+                <button className="menu-button" onClick={() => navigate("/feed")}>
+                    <FontAwesomeIcon icon={faRss}/> Feed
+                </button>
+                <button className="menu-button" onClick={() => navigate("/followers")}>
+                    <FontAwesomeIcon icon={faUsers}/> Follower
+                </button>
+                <button className="menu-button" onClick={() => navigate("/following")}>
+                    <FontAwesomeIcon icon={faUserFriends}/> Folge ich
+                </button>
             </div>
             <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>Profil bearbeiten</button>
         </div>

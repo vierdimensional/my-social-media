@@ -1,76 +1,141 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import "./search.scss";
+import Nav from "../../elements/nav/Nav";
+
+// Font Awesome Imports
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faSpinner, faTriangleExclamation, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
-    const [query, setQuery] = useState("");
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState([]); // Gefundene Benutzer
+    const [following, setFollowing] = useState(new Set()); // Abonnierte Benutzer
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSearch = async () => {
-        if (!query.trim()) return;
+    const { token, username } = useSelector((state) => state.user);
+    const location = useLocation();
+    const navigate = useNavigate();
 
-        setLoading(true);
-        setError(null);
+    // ✅ Hole den query-Parameter aus der URL
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query")?.toLowerCase() || "";
+
+    // 📌 Lade die Abonnements des Benutzers
+    useEffect(() => {
+        if (!token) return;
+
+        const fetchFollowing = async () => {
+            try {
+                const response = await axios.get(`http://49.13.31.246:9191/followings/${username}`, {
+                    headers: { "x-access-token": token },
+                });
+                const followingSet = new Set(response.data.following.map((u) => u.username));
+                setFollowing(followingSet);
+            } catch (err) {
+                console.error("Fehler beim Laden der Abonnements:", err);
+            }
+        };
+
+        fetchFollowing();
+    }, [token, username]);
+
+    // 📌 Suche nach Benutzern
+    useEffect(() => {
+        if (!query) {
+            setResults([]);
+            return;
+        }
+
+        const fetchUsers = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get(`http://49.13.31.246:9191/users`, {
+                    headers: { "x-access-token": token },
+                });
+
+                const filteredUsers = response.data.filter((user) =>
+                    user.fullName.toLowerCase().includes(query) || user.username.toLowerCase().includes(query)
+                );
+
+                setResults(filteredUsers);
+            } catch (err) {
+                console.error("Fehler bei der Suche:", err);
+                setResults([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUsers();
+    }, [query, token]);
+
+    // 📌 Abonnieren / Abbestellen
+    const toggleFollow = async (username) => {
+        const isFollowing = following.has(username);
+        const url = `http://49.13.31.246:9191/${isFollowing ? "unfollow" : "follow"}`;
 
         try {
-            const jwt = localStorage.getItem("jwt");
-            if (!jwt) {
-                setError("Kein Token gefunden. Bitte anmelden.");
-                setLoading(false);
-                return;
-            }
+            await axios.post(url, { username }, { headers: { "x-access-token": token } });
 
-            const response = await fetch(`http://49.13.31.246:9191/search?query=${query}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-access-token": jwt,
-                },
+            setFollowing((prev) => {
+                const updatedSet = new Set(prev);
+                if (isFollowing) {
+                    updatedSet.delete(username);
+                } else {
+                    updatedSet.add(username);
+                }
+                return updatedSet;
             });
-
-            if (!response.ok) throw new Error(`Fehler: ${response.status}`);
-
-            const data = await response.json();
-            setResults(data);
         } catch (err) {
-            setError("Fehler bei der Suche. Bitte versuche es erneut.");
-        } finally {
-            setLoading(false);
+            console.error(`Fehler beim ${isFollowing ? "Abbestellen" : "Abonnieren"}:`, err);
         }
     };
 
+    // 📌 Zum Benutzerprofil navigieren
+    const handleUserClick = (user) => {
+        navigate(`/user/${user.username}`);
+    };
+
     return (
-        <div className="search-container">
-            <div className="search-box">
-                <span className="search-icon">🔍</span>
-                <input
-                    type="text"
-                    placeholder="Benutzername eingeben..."
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearch()} // Suche bei Enter-Taste
-                />
-            </div>
-
-            {loading && <p>⏳ Suche läuft...</p>}
-            {error && <p className="error">{error}</p>}
-
-            <ul className="search-results">
-                {results.length > 0 ? (
-                    results.map((user) => (
-                        <li key={user._id}>
-                            <Link to={`/profile/${user._id}`}>
-                                <img src={user.avatar || "/default-avatar.png"} alt="avatar" className="miniAvatar" />
-                                <span>{user.username}</span>
-                            </Link>
-                        </li>
-                    ))
-                ) : (
-                    <p className="no-results">🔎 Keine Benutzer gefunden.</p>
+        <div>
+            <Nav />
+            <div className="search-container">
+                <h2>
+                    <FontAwesomeIcon icon={faSearch} /> Suchergebnisse: {query}
+                </h2>
+                {loading && (
+                    <p>
+                        <FontAwesomeIcon icon={faSpinner} spin /> Wird geladen...
+                    </p>
                 )}
-            </ul>
+                {error && <p className="error-msg">{error}</p>}
+                {!loading && results.length === 0 && (
+                    <p>
+                        <FontAwesomeIcon icon={faTriangleExclamation} /> Keine Ergebnisse gefunden
+                    </p>
+                )}
+
+                {/* ✅ Liste der gefundenen Benutzer */}
+                <ul className="search-results">
+                    {results.map((user) => (
+                        <div className="user-card-search">
+                        <li key={user._id} onClick={() => handleUserClick(user)}>
+                            <img src={user.avatar || avatar} alt="Avatar" />
+                            {user.fullName} (@{user.username})
+                        </li>
+                        </div>
+                    ))}
+                </ul>
+
+                {/* ✅ Button "Zurück zum Feed" */}
+                <button className="back-to-feed-btn" onClick={() => navigate("/feed")}>
+                    <FontAwesomeIcon icon={faArrowLeft} /> Zurück zum Feed
+                </button>
+            </div>
         </div>
     );
 };
