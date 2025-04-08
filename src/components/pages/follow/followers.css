@@ -1,0 +1,73 @@
+.followers-container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: "Roboto", sans-serif;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.followers-container h2 {
+  font-size: 24px;
+  color: #050505;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.followers-container h2 svg {
+  color: #65676b;
+}
+
+.followers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.follower-card {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.follower-card:hover {
+  background-color: #E8ECEF;
+}
+.follower-card .follower-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.follower-card .follower-info {
+  display: flex;
+  flex-direction: column;
+}
+.follower-card .follower-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #050505;
+}
+.follower-card .follower-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #65676b;
+}
+
+.followers-loading,
+.followers-error,
+.followers-empty {
+  text-align: center;
+  font-size: 16px;
+  color: #65676b;
+  padding: 20px;
+}
+
+/*# sourceMappingURL=followers.css.map */

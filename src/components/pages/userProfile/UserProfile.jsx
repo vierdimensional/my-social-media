@@ -1,167 +1,238 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaCheckCircle, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import "./userProfile.scss";
+import Nav from "../../elements/nav/Nav";
+import { RiUserFollowLine, RiUserUnfollowLine } from "react-icons/ri";
 
 const UserProfile = () => {
-    const { username } = useParams();
-    const [user, setUser] = useState(null);
+    const { username: viewedUsername } = useParams();
+    const { token, username: myUsername, user } = useSelector((state) => state.user);
+
+    const [userData, setUserData] = useState(null);
+    const [userPosts, setUserPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isFollowing, setIsFollowing] = useState(false);
-    const [isLoadingFollow, setIsLoadingFollow] = useState(false);
-    const [userPosts, setUserPosts] = useState([]);
-    const token = useSelector((state) => state.auth?.token);
-
-    const fetchUserPosts = async (userId) => {
-        if (!token || !userId) return;
-
-        try {
-            const response = await axios.get(`http://49.13.31.246:9191/posts?user_id=${userId}`, {
-                headers: { "x-access-token": token },
-            });
-            setUserPosts(Array.isArray(response.data) ? response.data : []);
-        } catch (err) {
-            setUserPosts([]);
-        }
-    };
+    const [fullscreenImage, setFullscreenImage] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        if (!token || !viewedUsername) {
+            setError("❌ Fehler: Token oder Benutzername fehlt.");
+            setLoading(false);
+            return;
+        }
+
         const fetchUserData = async () => {
-            if (!token) {
-                setError("Необходима авторизация");
-                setLoading(false);
-                return;
-            }
-
             try {
-                const response = await axios.get(`http://49.13.31.246:9191/user/${username}`, {
-                    headers: { "x-access-token": token },
+                const res = await fetch(`http://49.13.31.246:9191/user/${viewedUsername}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-access-token": token,
+                    },
                 });
+                if (!res.ok) throw new Error(`Fehler: ${res.status}`);
+                const data = await res.json();
+                setUserData(data);
+                if (data._id) fetchUserPosts(data._id);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
 
-                setUser(response.data);
-                if (response.data._id) {
-                    fetchUserPosts(response.data._id);
+        const fetchUserPosts = async (userId) => {
+            try {
+                const res = await fetch(`http://49.13.31.246:9191/posts?user_id=${userId}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-access-token": token,
+                    },
+                });
+                if (!res.ok) return;
+                const data = await res.json();
+                setUserPosts(data.reverse());
+            } catch {
+                console.warn("Keine Beiträge geladen");
+            }
+        };
+
+        const checkFollowStatus = async () => {
+            try {
+                const cached = localStorage.getItem(`following_${myUsername}`);
+                if (cached) {
+                    const set = new Set(JSON.parse(cached));
+                    setIsFollowing(set.has(viewedUsername.toLowerCase()));
+                } else {
+                    const res = await fetch(`http://49.13.31.246:9191/followings/${myUsername}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-access-token": token,
+                        },
+                    });
+                    if (!res.ok) throw new Error("Fehler beim Laden der Abos");
+                    const data = await res.json();
+                    const follows = new Set(data.following.map((u) => u.username.toLowerCase()));
+                    setIsFollowing(follows.has(viewedUsername.toLowerCase()));
+                    localStorage.setItem(`following_${myUsername}`, JSON.stringify([...follows]));
                 }
             } catch (err) {
-                setError("Ошибка при загрузке профиля");
+                console.error("❌ Fehler beim Follow-Abgleich:", err.message);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchUserData();
-    }, [token, username]);
+        checkFollowStatus();
+    }, [token, viewedUsername, myUsername]);
 
-    useEffect(() => {
-        const checkFollowingStatus = async () => {
-            if (!token) return;
-            try {
-                const response = await axios.get(`http://49.13.31.246:9191/followings/${username}`, {
-                    headers: { "x-access-token": token },
-                });
-
-                const followingList = response.data.following || [];
-                const isUserFollowing = followingList.some(user => user.username === username);
-                setIsFollowing(isUserFollowing);
-                localStorage.setItem(`isFollowing_${username}`, JSON.stringify(isUserFollowing));
-            } catch (err) {
-                console.error("Ошибка проверки подписки:", err);
-            }
-        };
-
-        const storedFollowing = localStorage.getItem(`isFollowing_${username}`);
-        if (storedFollowing !== null) {
-            setIsFollowing(JSON.parse(storedFollowing));
-        } else {
-            checkFollowingStatus();
-        }
-    }, [token, username]);
-
-    const handleFollow = async () => {
-        if (!token || !user) return;
-        setIsLoadingFollow(true);
+    const toggleFollow = async () => {
+        const isNowFollowing = !isFollowing;
+        const url = `http://49.13.31.246:9191/${isNowFollowing ? "follow" : "unfollow"}`;
 
         try {
-            await axios.post(`http://49.13.31.246:9191/follow`, { username }, {
-                headers: { "x-access-token": token },
+            const res = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": token,
+                },
+                body: JSON.stringify({ username: viewedUsername }),
             });
 
-            setIsFollowing(true);
-            setUser(prevUser => ({ ...prevUser, followers: (prevUser.followers || 0) + 1 }));
-            localStorage.setItem(`isFollowing_${username}`, JSON.stringify(true));
-        } catch (error) {
-            console.error("Ошибка подписки:", error);
-        } finally {
-            setIsLoadingFollow(false);
+            if (!res.ok) throw new Error("Fehler beim Follow/Unfollow");
+
+            // Update localStorage
+            const stored = localStorage.getItem(`following_${myUsername}`);
+            const follows = stored ? new Set(JSON.parse(stored)) : new Set();
+
+            const usernameLC = viewedUsername.toLowerCase();
+            isNowFollowing ? follows.add(usernameLC) : follows.delete(usernameLC);
+
+            localStorage.setItem(`following_${myUsername}`, JSON.stringify([...follows]));
+            setIsFollowing(isNowFollowing);
+        } catch (err) {
+            console.error("❌ Fehler beim Follow/Unfollow:", err.message);
         }
     };
 
-    const handleUnfollow = async () => {
-        if (!token || !user) return;
-        setIsLoadingFollow(true);
-
+    const handleLike = async (postId) => {
         try {
-            await axios.post(`http://49.13.31.246:9191/unfollow`, { username }, {
-                headers: { "x-access-token": token },
+            const res = await fetch("http://49.13.31.246:9191/like", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": token,
+                },
+                body: JSON.stringify({ post_id: postId }),
             });
-
-            setIsFollowing(false);
-            setUser(prevUser => ({ ...prevUser, followers: (prevUser.followers || 0) - 1 }));
-            localStorage.setItem(`isFollowing_${username}`, JSON.stringify(false));
+            if (!res.ok) throw new Error("Fehler beim Liken");
+            setUserPosts((prev) =>
+                prev.map((p) =>
+                    p._id === postId ? { ...p, likes: [...p.likes, { fromUser: user }] } : p
+                )
+            );
         } catch (error) {
-            console.error("Ошибка отписки:", error);
-        } finally {
-            setIsLoadingFollow(false);
+            console.error("Fehler beim Liken:", error);
         }
     };
 
-    if (loading) return <div className="loading">Загрузка...</div>;
-    if (error) return <div className="error">{error}</div>;
-    if (!user) return <div className="error">Пользователь не найден</div>;
+    const deleteLike = async (postId) => {
+        try {
+            const res = await fetch(`http://49.13.31.246:9191/like/${postId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": token,
+                },
+            });
+            if (!res.ok) throw new Error("Fehler beim Entfernen des Likes");
+            setUserPosts((prev) =>
+                prev.map((p) =>
+                    p._id === postId ? { ...p, likes: p.likes.filter((l) => l.fromUser !== user) } : p
+                )
+            );
+        } catch (error) {
+            console.error("Fehler beim Entfernen des Likes:", error);
+        }
+    };
+
+    if (loading) return <div className="one-user-loading">⏳ Laden...</div>;
+    if (error) return <div className="one-user-error">{error}</div>;
+    if (!userData) return <div className="one-user-error">❌ Benutzerprofil konnte nicht geladen werden</div>;
 
     return (
-        <div className="container">
-            <div className="profile-container">
-                <div className="cover-image"></div>
-                <div className="profile-content">
-                    <div className="profile-image">
-                        <img src={user.avatar || "https://via.placeholder.com/80"} alt="Avatar" />
-                    </div>
-                    <div className="profile-info">
-                        <h2 className="name">
-                            {user.fullName} <FaCheckCircle className="verified" />
-                        </h2>
-                        <div className="connections">
-                            <p><strong>Подписчики:</strong> {user.followers || 0}</p>
-                            <p><strong>Подписки:</strong> {user.following || 0}</p>
-                        </div>
-                        <div className="follow-section">
+        <div>
+            <Nav />
+            <div className="one-user-container">
+                <div className="one-user-card">
+                    <img src={userData.avatar || avatar} alt="Avatar" className="one-user-avatar" />
+                    <h2 className="one-user-name">{userData.fullName}</h2>
+                    <p><strong>Benutzername:</strong> <br />@{userData.username}</p>
+                    <p><strong>Alter:</strong> {userData.age}</p>
+                    <p style={{ whiteSpace: "pre-wrap" }}><strong>Über mich:</strong> <br />{userData.bio}</p>
+                    <p><strong>Beiträge:</strong> {userData.posts_count}</p>
+                    <div className="one-user-btns">
+                        {viewedUsername !== myUsername && (
                             <button
-                                className="follow-btn"
-                                onClick={handleFollow}
-                                disabled={isLoadingFollow}
+                                className={`one-user-follow-btn ${isFollowing ? "one-user-unfollow" : "one-user-follow"}`}
+                                onClick={toggleFollow}
                             >
-                                {isLoadingFollow && !isFollowing ? "Подписка..." : "Подписаться"}
+                                {isFollowing ? <RiUserUnfollowLine /> : <RiUserFollowLine />}
                             </button>
-
-                            <button
-                                className="unfollow-btn"
-                                onClick={handleUnfollow}
-                                disabled={isLoadingFollow}
-                            >
-                                {isLoadingFollow && isFollowing ? "Отписка..." : "Отписаться"}
-                            </button>
-                            {isFollowing && <span className="follow-status">✔ Вы подписаны</span>}
-                        </div>
-                        <p className="details">
-                            <span className="location"><FaMapMarkerAlt /> {user.bio || "Нет информации"}</span>
-                            <span className="joined"><FaCalendarAlt /> Age - {user.age || "Не указан"}</span>
-                        </p>
+                        )}
+                        <button className="one-user-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
                     </div>
                 </div>
+
+                <div className="one-user-posts">
+                    <h3>Beiträge des Benutzers</h3>
+                    {userPosts.length > 0 ? (
+                        userPosts.map((post) => (
+                            <div key={post._id} className="feed-post">
+                                <div className="post-header">
+                                    <img src={userData.avatar || "/default-avatar.png"} alt="Avatar" className="author-avatar" />
+                                    <span className="author-name">{userData.fullName || userData.username}</span>
+                                </div>
+                                {post.title && <h3 className="post-title">{post.title}</h3>}
+                                {post.description && <p className="post-description">{post.description}</p>}
+                                {post.image && (
+                                    <img
+                                        src={post.image}
+                                        alt="Beitragsbild"
+                                        className="post-media"
+                                        onClick={() => setFullscreenImage(post.image)}
+                                    />
+                                )}
+                                {post.video && (
+                                    <iframe title="Beitragsvideo" src={post.video} className="post-video" allowFullScreen></iframe>
+                                )}
+                                <div className="post-actions">
+                                    <button
+                                        className="like-button"
+                                        onClick={() =>
+                                            post.likes.some((like) => like.fromUser === user)
+                                                ? deleteLike(post._id)
+                                                : handleLike(post._id)
+                                        }
+                                    >
+                                        {post.likes.some((like) => like.fromUser === user) ? "❤️" : "🤍"} {post.likes.length}
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p className="no-posts">❌ Dieser Benutzer hat noch keine Beiträge.</p>
+                    )}
+                </div>
+
+                {fullscreenImage && (
+                    <div className="fullscreen-image" onClick={() => setFullscreenImage(null)}>
+                        <img src={fullscreenImage} alt="Vollbild" />
+                    </div>
+                )}
             </div>
         </div>
     );

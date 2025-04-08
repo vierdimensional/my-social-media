@@ -1,3 +1,14 @@
+
+
+$primary-color: #FF6A4D;
+$light-gray: #f0f2f5;
+$text-color: #000000;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
+
+
+
 .new-post-section {
   display: flex;
   flex-direction: column;
@@ -5,14 +16,15 @@
   width: 100%;
   background-color: $background-white;
   gap: 40px;
-  padding: 20px;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 .new-post-form,
 .profile-buttons {
   background-color: $background-white;
-  padding: 30px;
+  width: 100%;
+  padding: 20px;
   border: 1px solid $border-color;
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
@@ -44,7 +56,9 @@
   transition: background 0.3s ease;
 
   &:hover {
-    background-color: darken($primary-color, 5%);
+    text-decoration: underline;
+    background: $background-white;
+    color: $text-color;
   }
 }
 
@@ -57,7 +71,7 @@ h2 {
 }
 
 .new-post-button{
-  background: $primary-color;
+  background: $text-color;
   color: $background-white;
   padding: 10px 15px;
   font-size: 16px;

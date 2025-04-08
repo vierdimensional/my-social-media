@@ -1,72 +1,52 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-//import { jwtDecode } from "jwt-decode";//
-import Feed from "./pages/feed/Feed";
-import MyProfile from "./pages/myProfile/MyProfile";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
-import EditMyProfile from "./pages/editMyProfile/EditMyProfile";
 import Search from "./elements/search/Search";
 import Nav from "./elements/nav/Nav";
+import Feed from "./pages/feed/Feed";
 import Posts from "./elements/posts/Posts";
+import MyProfile from "./pages/myProfile/MyProfile";
+import UserProfile from "./pages/userProfile/UserProfile";
+import EditMyProfile from "./pages/editMyProfile/EditMyProfile";
+import Followers from "./pages/follow/Followers";
+import Following from "./pages/following/Following";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
 import "./app.scss";
 
 
-/*
-const RedirectHandler = () => {
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const checkToken = () => {
-            const token = localStorage.getItem("token");
+const AppContent = () => {
+    const location = useLocation();
+    const hideNav = location.pathname === "/signIn" || location.pathname === "/signUp";
 
-            if (token) {
-                try {
-                    const decoded = jwtDecode(token);
-                    const currentTime = Date.now() / 1000;
-
-                    if (decoded.exp && decoded.exp < currentTime) {
-                        // Token ist abgelaufen -> auf "/signIn" weiterleiten
-                        localStorage.removeItem("token");
-                        navigate("/signIn");
-                    } else {
-                        // Token ist gültig -> auf "/feed" weiterleiten
-                        navigate("/feed");
-                    }
-                } catch (error) {
-                    console.error("Token-Fehler:", error);
-                    localStorage.removeItem("token");
-                    navigate("/signIn");
-                }
-            } else {
-                navigate("/signIn");
-            }
-        };
-
-        checkToken();
-    }, [navigate]);
-
-    return null;
-};
-*/
-
-const App = () => {
     return (
-        <BrowserRouter>
-            <Nav/>
+        <>
+            {!hideNav && <Nav />}
             <Routes>
                 <Route path='/signIn' element={<SignIn />} />
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/myProfile' element={<MyProfile />} />
+                <Route path="/followers/:username" element={<Followers />} />
+                <Route path="/following/:username" element={<Following />} />
                 <Route path='/feed' element={<Feed />} />
                 <Route path='/search' element={<Search />} />
                 <Route path='/editmyprofile' element={<EditMyProfile />} />
                 <Route path='/posts' element={<Posts />} />
-                <Route path="*" element={<NotFoundPage />} />
+                <Route path='*' element={<NotFoundPage />} />
+                <Route path='/userprofile/:username' element={<UserProfile />} />
+
 
 
             </Routes>
+        </>
+    );
+};
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <AppContent />
         </BrowserRouter>
     );
 };

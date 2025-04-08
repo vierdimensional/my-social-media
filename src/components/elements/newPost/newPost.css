@@ -1,17 +1,80 @@
-/* Error: Undefined variable.
- *   ,
- * 6 |   background-color: $background-white;
- *   |                     ^^^^^^^^^^^^^^^^^
- *   '
- *   newPost.scss 6:21  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 6 \2502    background-color: $background-white;\a   \2502                      ^^^^^^^^^^^^^^^^^\a   \2575 \a   newPost.scss 6:21  root stylesheet";
+.new-post-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #ffffff;
+  gap: 40px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
+
+.new-post-form,
+.profile-buttons {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.new-post-form input,
+.new-post-form textarea {
+  width: 100%;
+}
+
+.profile-buttons a {
+  width: 100%;
+}
+
+.profile-buttons button {
+  width: 100%;
+  padding: 12px;
+  background-color: #FF6A4D;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.profile-buttons button:hover {
+  text-decoration: underline;
+  background: #ffffff;
+  color: #000000;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.new-post-button {
+  background: #000000;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: text-decoration 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+.new-post-button:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=newPost.css.map */

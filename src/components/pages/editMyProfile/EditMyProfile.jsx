@@ -187,7 +187,7 @@ const EditMyProfile = () => {
     };
 
     const deleteProfile = async () => {
-        const isConfirmed = window.confirm("Sind Sie sicher, dass Sie Ihr Profil löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!");
+        const isConfirmed = window.confirm("Sind Sie sicher, dass Sie Ihr Profile löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden!");
 
         if (!isConfirmed) return;
 
@@ -226,8 +226,6 @@ const EditMyProfile = () => {
 
     return (
         <div className="edit-profile-container">
-            <h1 className="edit-profile-title">Profil bearbeiten</h1>
-
             {success && (
                 <div className="success-message">
                     <FontAwesomeIcon icon={faCheck} /> Änderungen erfolgreich gespeichert!
@@ -241,10 +239,12 @@ const EditMyProfile = () => {
             )}
 
             <form onSubmit={handleSubmit} className="edit-profile-form">
+                <h1 className="edit-profile-title">Profil bearbeiten</h1>
+
                 <div className="avatar-preview-container">
                     {avatarPreview && (
                         <div className="avatar-preview">
-                            <img src={avatarPreview} alt="Avatar Vorschau" />
+                            <img src={avatarPreview} alt="Avatar Vorschau"/>
                         </div>
                     )}
                 </div>
@@ -323,7 +323,7 @@ const EditMyProfile = () => {
                                 checked={photoInputType === "url"}
                                 onChange={() => setPhotoInputType("url")}
                             />
-                            <FontAwesomeIcon icon={faLink} /> URL eingeben
+                            <FontAwesomeIcon icon={faLink}/> URL eingeben
                         </label>
                         <label className={`choice-option ${photoInputType === "upload" ? "active" : ""}`}>
                             <input
@@ -333,7 +333,7 @@ const EditMyProfile = () => {
                                 checked={photoInputType === "upload"}
                                 onChange={() => setPhotoInputType("upload")}
                             />
-                            <FontAwesomeIcon icon={faUpload} /> Datei hochladen
+                            <FontAwesomeIcon icon={faUpload}/> Datei hochladen
                         </label>
                     </div>
 
@@ -347,7 +347,7 @@ const EditMyProfile = () => {
                                 className="file-input"
                             />
                             <label htmlFor="avatar-upload" className="file-upload-btn">
-                                <FontAwesomeIcon icon={faUpload} /> Bild auswählen
+                                <FontAwesomeIcon icon={faUpload}/> Bild auswählen
                             </label>
                             {avatarFile && <span className="file-name">{avatarFile.name}</span>}
                         </div>
@@ -363,13 +363,6 @@ const EditMyProfile = () => {
                 </div>
 
                 <div className="button-group">
-                    <button
-                        type="button"
-                        className="back-button"
-                        onClick={() => navigate("/MyProfile")}
-                    >
-                        <FontAwesomeIcon icon={faArrowLeft} /> Zurück zum Profil
-                    </button>
 
                     <button
                         type="submit"
@@ -378,19 +371,26 @@ const EditMyProfile = () => {
                     >
                         {loading ? (
                             <>
-                                <FontAwesomeIcon icon={faSpinner} spin /> Speichern...
+                                <FontAwesomeIcon icon={faSpinner} spin/> Speichern...
                             </>
                         ) : (
                             <>
-                                <FontAwesomeIcon icon={faSave} /> Änderungen speichern
+                                <FontAwesomeIcon icon={faSave}/> Änderungen speichern
                             </>
                         )}
+                    </button>
+                    <button
+                        type="button"
+                        className="back-button"
+                        onClick={() => navigate("/MyProfile")}
+                    >
+                        <FontAwesomeIcon icon={faArrowLeft}/> Zurück zum Profil
                     </button>
                 </div>
             </form>
 
             <div className="delete-profile-container">
-                <button
+            <button
                     className="delete-profile-btn"
                     onClick={deleteProfile}
                     disabled={loading}

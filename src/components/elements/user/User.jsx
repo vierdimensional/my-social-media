@@ -3,127 +3,127 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import avatar from '../../../assets/img/sbcf-default-avatar.png';
+import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import "./user.scss";
 
 const User = () => {
-    const {token, username} = useSelector((state) => state.user);
+    const { token, username } = useSelector((state) => state.user);
     const [users, setUsers] = useState([]);
+    const [following, setFollowing] = useState(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [following, setFollowing] = useState(new Set()); // ✅ Подписки пользователя
-    const navigate = useNavigate(); // ✅ Для перехода на страницу профиля
+    const navigate = useNavigate();
 
-    // 📌 Загружаем всех пользователей и мои подписки
     useEffect(() => {
         if (!token) {
-            setError("❌ Ошибка: Токен не найден.");
+            setError("❌ Fehler: Kein Token gefunden.");
             setLoading(false);
             return;
         }
 
         const fetchUsers = async () => {
             try {
-                const response = await fetch("http://49.13.31.246:9191/users", {
-                    method: "GET",
+                const res = await fetch("http://49.13.31.246:9191/users", {
                     headers: {
                         "Content-Type": "application/json",
                         "x-access-token": token,
                     },
                 });
-                if (!response.ok) throw new Error(`Ошибка: ${response.status}`);
 
-                const data = await response.json();
-
-                // ✅ Исключаем текущего пользователя из списка
-                const filteredUsers = data.filter(user => user.username !== username);
-                setUsers(filteredUsers);
+                if (!res.ok) throw new Error(`Fehler beim Laden der Nutzer: ${res.status}`);
+                const data = await res.json();
+                const filtered = data.filter((u) => u.username !== username);
+                setUsers(filtered);
             } catch (err) {
                 setError(err.message);
             }
         };
 
-        const fetchMyFollowing = async () => {
+        const fetchFollowings = async () => {
             try {
-                const response = await fetch(`http://49.13.31.246:9191/followings/${username}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "x-access-token": token,
-                    },
-                });
-                if (!response.ok) throw new Error("Ошибка загрузки подписок");
+                const cached = localStorage.getItem(`following_${username}`);
+                if (cached) {
+                    setFollowing(new Set(JSON.parse(cached)));
+                } else {
+                    const res = await fetch(`http://49.13.31.246:9191/followings/${username}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-access-token": token,
+                        },
+                    });
 
-                const data = await response.json();
-                const myFollowing = new Set(data.following.map((u) => u.username)); // ✅ Формируем Set из подписок
-                setFollowing(myFollowing);
+                    if (!res.ok) throw new Error("Fehler beim Laden der Follows");
+                    const data = await res.json();
+                    const follows = new Set(data.following.map((u) => u.username.toLowerCase()));
+                    setFollowing(follows);
+                    localStorage.setItem(`following_${username}`, JSON.stringify([...follows]));
+                }
             } catch (err) {
-                console.error("❌ Ошибка загрузки подписок:", err.message);
-            } finally {
-                setLoading(false);
+                console.error("❌ Fehler bei Follow-Daten:", err.message);
             }
         };
 
-        fetchUsers();
-        fetchMyFollowing();
+        const init = async () => {
+            await Promise.all([fetchUsers(), fetchFollowings()]);
+            setLoading(false);
+        };
+
+        init();
     }, [token, username]);
 
-    // 📌 Подписка / Отписка
-    const toggleFollow = async (userToFollow) => {
-        const isFollowing = following.has(userToFollow);
-        const url = `http://49.13.31.246:9191/${isFollowing ? "unfollow" : "follow"}`;
+    const toggleFollow = async (targetUser) => {
+        const isAlreadyFollowing = following.has(targetUser.toLowerCase());
+        const url = `http://49.13.31.246:9191/${isAlreadyFollowing ? "unfollow" : "follow"}`;
 
         try {
-            const response = await fetch(url, {
+            const res = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "x-access-token": token,
                 },
-                body: JSON.stringify({username: userToFollow}),
+                body: JSON.stringify({ username: targetUser }),
             });
-            if (!response.ok) throw new Error(`Ошибка ${isFollowing ? "отписки" : "подписки"}`);
 
-            // 📌 Обновляем UI мгновенно
-            setFollowing((prev) => {
-                const updatedSet = new Set(prev);
-                if (isFollowing) {
-                    updatedSet.delete(userToFollow);
-                } else {
-                    updatedSet.add(userToFollow);
-                }
-                return updatedSet;
-            });
+            if (!res.ok) throw new Error(`Fehler beim ${isAlreadyFollowing ? "Entfolgen" : "Folgen"}`);
+
+            const updated = new Set(following);
+            isAlreadyFollowing
+                ? updated.delete(targetUser.toLowerCase())
+                : updated.add(targetUser.toLowerCase());
+
+            setFollowing(updated);
+            localStorage.setItem(`following_${username}`, JSON.stringify([...updated]));
         } catch (err) {
-            console.error("❌ Ошибка при подписке/отписке:", err.message);
+            console.error("❌ Follow/Unfollow Fehler:", err.message);
         }
     };
 
-    // 📌 UI обработка ошибок и загрузки
-    if (loading) return <div className="loading">⏳ Загрузка...</div>;
+    if (loading) return <div className="loading">⏳ Lade Benutzer...</div>;
     if (error) return <div className="error-msg">{error}</div>;
 
     return (
         <div className="user-list-container">
             <h2 className="uberschrift_user">
-                <FontAwesomeIcon icon={faUsers}/> Alle User
+                <FontAwesomeIcon icon={faUsers} /> Alle User
             </h2>
+
             <div className="user-list">
-                {users.map((userItem) => (
-                    <div key={userItem._id} className="user-item">
-                        {/* ✅ Клик на аватар или имя перенаправляет в профиль */}
-                        <div className="user-info" onClick={() => navigate(`/user/${userItem.username}`)}>
-                            <img src={userItem.avatar || avatar} alt="Avatar" className="user-avatar"/>
-                            <h4>{userItem.fullName || "Ohne Name"}</h4>
-                            <p>@{userItem.username}</p>
+                {users.map((user) => (
+                    <div key={user._id} className="user-item">
+                        <div className="user-info" onClick={() => navigate(`/userprofile/${user.username}`)}>
+                            <img src={user.avatar || avatar} alt="Avatar" className="user-avatar" />
+                            <div>
+                                <h4>{user.fullName || "Ohne Name"}</h4>
+                                <p>@{user.username}</p>
+                            </div>
                         </div>
 
-                        {/* ✅ Кнопка подписки / отписки */}
                         <button
-                            className={`follow-btn ${following.has(userItem.username) ? "following" : ""}`}
-                            onClick={() => toggleFollow(userItem.username)}
+                            className={`follow-btn ${following.has(user.username.toLowerCase()) ? "following" : ""}`}
+                            onClick={() => toggleFollow(user.username)}
                         >
-                            {following.has(userItem.username) ? "Löschen" : "Folgen"}
+                            {following.has(user.username.toLowerCase()) ? "Nicht folgen" : "Folgen"}
                         </button>
                     </div>
                 ))}

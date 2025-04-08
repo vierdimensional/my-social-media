@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrashAlt, faExclamationTriangle, faSpinner, faEnvelope, faTimesCircle, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import {
+    faHeart,
+    faTrashAlt,
+    faExclamationTriangle,
+    faSpinner,
+    faEnvelope,
+    faTimesCircle,
+    faArrowUp,
+    faUserGroup,
+    faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import "./posts.scss";
 
 const Posts = () => {
@@ -11,6 +22,7 @@ const Posts = () => {
     const [loading, setLoading] = useState(false);
     const [filterOption, setFilterOption] = useState("all");
     const [showScroll, setShowScroll] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!token) return;
@@ -72,10 +84,9 @@ const Posts = () => {
     const deleteLike = async (postId) => {
         setPostsData((prev) =>
             prev.map((post) =>
-                post._id === postId ? {
-                    ...post,
-                    likes: post.likes.filter((like) => like.fromUser !== user._id),
-                } : post
+                post._id === postId
+                    ? { ...post, likes: post.likes.filter((like) => like.fromUser !== user._id) }
+                    : post
             )
         );
 
@@ -95,7 +106,13 @@ const Posts = () => {
     };
 
     const deletePost = async (postId) => {
-        if (!window.confirm("Möchten Sie diesen Beitrag wirklich löschen?")) return;
+        const postToDelete = postsData.find((post) => post._id === postId);
+        if (!postToDelete || postToDelete.user?.[0]?._id !== user._id) {
+            alert("❌ Du kannst nur deine eigenen Beiträge löschen.");
+            return;
+        }
+
+        if (!window.confirm("Möchtest du diesen Beitrag wirklich löschen?")) return;
 
         setPostsData((prev) => prev.filter((post) => post._id !== postId));
 
@@ -111,15 +128,10 @@ const Posts = () => {
             if (!response.ok) throw new Error("Fehler beim Löschen des Beitrags");
             alert("✅ Der Beitrag wurde erfolgreich gelöscht!");
         } catch (error) {
-            console.error("Fehler:", error);
+            console.error("Fehler beim Löschen:", error);
             alert("❌ Fehler beim Löschen des Beitrags.");
         }
     };
-
-    const filteredPosts =
-        filterOption === "media"
-            ? postsData.filter((post) => post.image && post.image.trim() !== "")
-            : postsData;
 
     const getPostDate = (post) => {
         if (post.createdAt) return new Date(post.createdAt);
@@ -131,6 +143,11 @@ const Posts = () => {
         }
         return new Date(0);
     };
+
+    const filteredPosts =
+        filterOption === "media"
+            ? postsData.filter((post) => post.image && post.image.trim() !== "")
+            : postsData;
 
     const sortedPosts = [...filteredPosts].sort((a, b) => getPostDate(b) - getPostDate(a));
 
@@ -149,6 +166,7 @@ const Posts = () => {
                         <option value="media">Nur mit Foto</option>
                     </select>
                 </div>
+
                 <div className="posts-posts">
                     {sortedPosts.map((post) => {
                         const likesCount = post.likes.length;
@@ -159,45 +177,81 @@ const Posts = () => {
                                 <div className="posts-post">
                                     {post.user?.[0] && (
                                         <div className="post-author">
-                                            <img
-                                                src={post.user[0].avatar || "/default-avatar.png"}
-                                                alt="Author avatar"
-                                                className="author-avatar"
-                                            />
-                                            <span className="author-name">
-                                                {post.user[0].fullName || post.user[0].username}<br/>
-                                                <FontAwesomeIcon icon={faHeart} /> {likesCount}
-                                            </span>
+                                            <div className="post-author-info">
+                                                {/* Avatar */}
+                                                <div className="author-column avatar">
+                                                    <img
+                                                        src={post.user[0].avatar || "/default-avatar.png"}
+                                                        alt="Author avatar"
+                                                        className="author-avatar"
+                                                    />
+                                                </div>
+
+                                                {/* Name */}
+                                                <div className="author-column name">
+                                                    <span className="author-name">
+                                                        {post.user[0].fullName || post.user[0].username}
+                                                    </span>
+                                                </div>
+
+                                                {/* Follower */}
+                                                <div className="author-column followers">
+                                                    <button
+                                                        className="followers-btn"
+                                                        onClick={() => navigate(`/followers/${post.user[0].username}`)}
+                                                    >
+                                                        <FontAwesomeIcon icon={faUserGroup} /> {post.user[0].followers?.length || 0} Follower
+                                                    </button>
+                                                </div>
+
+                                                {/* Following */}
+                                                <div className="author-column following">
+                                                    <button
+                                                        className="following-btn"
+                                                        onClick={() => navigate(`/following/${post.user[0].username}`)}
+                                                    >
+                                                        <FontAwesomeIcon icon={faUserPlus} /> {post.user[0].following?.length || 0} Gefolgt
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     )}
 
                                     {post.title && <h3 className="post-title">{post.title}</h3>}
                                     {post.description && <p className="post-description">{post.description}</p>}
-
                                     {post.image && <img src={post.image} alt="Post media" className="post-media" />}
                                     {post.video && filterOption === "all" && (
-                                        <iframe
-                                            title="Post video"
-                                            src={`${post.video}&autoplay=1&mute=1`}
-                                            width="100%"
-                                            height="320px"
-                                        ></iframe>
+                                        <div className="responsive-video">
+                                            <iframe
+                                                title="Post video"
+                                                src={`${post.video}&autoplay=1&mute=1`}
+                                                allow="autoplay"
+                                            ></iframe>
+                                        </div>
                                     )}
 
                                     <div className="post-likes">
-                                        <button className="like-button" onClick={() => (isLikedByUser ? deleteLike(post._id) : handleLike(post._id))}>
-                                            <FontAwesomeIcon icon={faHeart} color={isLikedByUser ? "red" : "gray"} />
+                                        <button
+                                            className="like-button"
+                                            onClick={() =>
+                                                isLikedByUser ? deleteLike(post._id) : handleLike(post._id)
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faHeart} color={isLikedByUser ? "black" : "red"} />
                                             {isLikedByUser ? " Gefällt mir" : " Gefällt mir"}
                                         </button>
-                                        <button className="delete_btn" onClick={() => deletePost(post._id)}>
-                                            <FontAwesomeIcon icon={faTrashAlt} />
-                                        </button>
+                                        {token && post.user?.[0]?._id === user._id && (
+                                            <button className="delete_btn" onClick={() => deletePost(post._id)}>
+                                                <FontAwesomeIcon icon={faTrashAlt} />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
+
                 {showScroll && (
                     <button className="scroll-to-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                         <FontAwesomeIcon icon={faArrowUp} />

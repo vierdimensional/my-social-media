@@ -5,8 +5,17 @@
   height: 100%;
   background: #ffffff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 16px;
   overflow-y: auto;
+}
+.user-list-container h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #050505;
+  margin-bottom: 12px;
 }
 
 .uberschrift_user {
@@ -16,75 +25,110 @@
   margin-bottom: 8px;
 }
 
+.user-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 12px;
+  margin: 10px 0 20px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #E8ECEF;
+  outline: none;
+}
+.user-search-input:focus {
+  background-color: rgb(238.0153846154, 240.9692307692, 243.1846153846);
+  border-color: #050505;
+}
+
 .user-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 .user-item {
-  padding: 8px 12px;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #050505;
   display: flex;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #050505;
+  transition: background-color 0.2s ease;
 }
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
+.user-item:hover {
+  background-color: rgb(250.0461538462, 250.9076923077, 251.5538461538);
 }
 
 .user-info {
-  flex-grow: 1;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-grow: 1;
 }
 .user-info:hover {
-  text-decoration: underline;
   cursor: pointer;
 }
-
+.user-info:hover h4, .user-info:hover p {
+  text-decoration: underline;
+}
 .user-info h4 {
   margin: 0;
   font-size: 14px;
   font-weight: bold;
 }
-
 .user-info p {
   margin: 0;
   font-size: 12px;
+  color: #65676b;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #E8ECEF;
 }
 
 .follow-btn {
-  width: 80px;
+  min-width: 85px;
   background: #050505;
   color: #ffffff;
-  border: none;
-  padding: 5px 8px;
-  font-size: 11px;
-  border-radius: 5px;
+  border: 1px solid #050505;
+  padding: 6px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
-
 .follow-btn:hover {
-  background: 1px solid #ddd;
+  border: 1px solid #050505;
+}
+.follow-btn.following {
+  background-color: #ffffff;
+  color: #050505;
+  border: 1px solid #050505;
+  text-decoration: underline;
+}
+.follow-btn.following:hover {
+  text-decoration: underline;
+  border: 1px solid #050505;
+  background: #E8ECEF;
 }
 
-.following {
-  background: #f13c3c !important;
-  cursor: pointer;
+.loading, .error-msg {
+  padding: 1rem;
+  text-align: center;
+  color: #050505;
 }
-.following:hover {
-  background: #941d1d !important;
+
+.error-msg {
+  color: #FF4D58;
 }
 
 .user-list-container::-webkit-scrollbar {

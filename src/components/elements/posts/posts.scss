@@ -24,7 +24,6 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: $background-white;
-  border: 1px solid $border-color;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -48,8 +47,6 @@ body {
 
 .posts-post {
   padding: 20px;
-  border: 1px solid $border-color;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -93,7 +90,6 @@ body {
 // Medien (Bild/Video)
 .post-media {
   width: 100%;
-  border-radius: 6px;
   overflow: hidden;
 
   img,
@@ -101,6 +97,23 @@ body {
     width: 100%;
     height: auto;
     display: block;
+  }
+}
+
+
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%; // 16:9 Format
+  height: 0;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 }
 
@@ -112,7 +125,6 @@ body {
   background: $text-color;
   color: $background-white;
   border: none;
-  border-radius: 50%;
   width: 40px;
   height: 40px;
   font-size: 20px;
@@ -120,7 +132,6 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 
   &:hover {
@@ -128,41 +139,87 @@ body {
   }
 }
 
-// Like & Delete Buttons
+.post-likes {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
 .like-button,
 .delete_btn {
-  font-size: 16px;
   background: none;
   border: none;
-  color: $secondary-text-color;
   cursor: pointer;
-  transition: color 0.3s ease;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.delete_btn {
+  color: #d00;
 
   &:hover {
-    color: $primary-color;
+    color: #900;
   }
 }
 
-.like-button {
-  margin-right: 10px;
-}
 
-.delete_btn {
-  margin-left: 10px;
+.author-name {
+  font-size: 20px;
   color: $text-color;
 }
 
-// Textinfos zu Post-Autor
-.author-name,
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .post-likes,
 .post-author {
   font-size: 14px;
   color: $secondary-text-color;
 }
 
-// Autoren-Avatar
+.post-author-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  background-color: $background-white;
+  font-family: "Roboto", sans-serif;
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 10px;
+  padding: 0 0 20px 0;
+}
+
 .author-avatar {
   width: 60px;
   height: 60px;
   object-fit: cover;
+  display: block;
+}
+
+.author-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: $text-color;
+}
+
+.followers-btn,
+.following-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: $text-color;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

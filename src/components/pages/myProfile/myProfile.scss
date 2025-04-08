@@ -7,13 +7,16 @@ $background-white: #ffffff;
 $error-color: #FF4D58;
 $success-color: #4DFFE2;
 
-.profile-container {
+
+.my-profile-container {
   max-width: 600px;
   margin: 20px auto;
   font-family: "Roboto", sans-serif;
+  flex-direction: column;
 }
 
-.profile-card {
+.my-profile-card {
+  max-width: 600px;
   background: $background-white;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -22,7 +25,11 @@ $success-color: #4DFFE2;
   flex-direction: column;
   gap: 20px;
 
-  .profile-header {
+  .my-profile-menu {
+    flex-direction: column;
+  }
+
+  .my-profile-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,29 +40,32 @@ $success-color: #4DFFE2;
       height: 120px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid $light-gray;
       margin-bottom: 15px;
     }
 
-    .profile-avatar {
-      width: 100%;
-      height: 100%;
+    .my-profile-avatar {
+      width: 120px;
+      height: 120px;
       object-fit: cover;
     }
 
-    .profile-name {
+    .my-post-image {
+      width: 400px;
+    }
+
+    .my-profile-name {
       margin: 10px 0 5px;
       font-size: 24px;
       color: $text-color;
     }
 
-    .profile-age {
+    .my-profile-age {
       font-size: 16px;
       color: $secondary-text-color;
       margin: 0 0 10px;
     }
 
-    .profile-bio {
+    .my-profile-bio {
       font-size: 14px;
       color: $text-color;
       margin: 10px 0;
@@ -63,7 +73,7 @@ $success-color: #4DFFE2;
       max-width: 400px;
     }
 
-    .profile-balance {
+    .my-profile-balance {
       margin-top: 10px;
       font-size: 14px;
       color: $secondary-text-color;
@@ -75,7 +85,7 @@ $success-color: #4DFFE2;
     }
   }
 
-  .profile-stats {
+  .my-profile-stats {
     display: flex;
     justify-content: space-around;
     border-top: 1px solid $border-color;
@@ -106,12 +116,24 @@ $success-color: #4DFFE2;
     }
   }
 
-  .profile-menu {
+  .my-profile-menu {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
     margin: 10px 0;
+
+    .my-profile-posts-section {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+    }
+
+    .my-profile-posts-title {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
 
     .menu-button {
       padding: 8px 12px;
@@ -131,14 +153,14 @@ $success-color: #4DFFE2;
     }
   }
 
-  .profile-actions {
+  .my-profile-actions {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
     gap: 10px;
 
-    .edit-profile-btn {
-      background: $primary-color;
+    .edit-my-profile-btn {
+      background: $text-color;
       color: $background-white;
       padding: 10px 15px;
       font-size: 16px;
@@ -153,6 +175,10 @@ $success-color: #4DFFE2;
       justify-content: center;
 
       &:hover {
+        background: $background-white;
+        color: $text-color;
+        border-color: $text-color;
+        border: 1px solid $text-color;
         text-decoration: underline;
       }
     }
@@ -180,7 +206,29 @@ $success-color: #4DFFE2;
     }
   }
 
-  .profile-footer {
+  .one-user-back-btn {
+    background: $background-white;
+    color: $text-color;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid $text-color;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+
+    &:hover {
+      text-decoration: underline;
+      background: $background-white;
+      color: $text-color;
+    }
+  }
+
+  .my-profile-footer {
     margin-top: 20px;
     text-align: center;
     font-size: 12px;
@@ -198,37 +246,126 @@ $success-color: #4DFFE2;
   color: $secondary-text-color;
 }
 
-.profile-error {
+.my-profile-error-msg {
   background: lighten($error-color, 40%);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   margin: 20px auto;
   max-width: 600px;
+  color: $error-color;
+}
 
-  p {
-    color: $error-color;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+.my-profile-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  .post-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h4 {
+      margin: 0 0 0.5rem;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      white-space: pre-wrap;
+      font-size: 16px;
+    }
+
+    .my-post-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .delete-button {
+      background: none;
+      border: none;
+      color: #f02849;
+      cursor: pointer;
+      font-size: 16px;
+
+      &:hover {
+        color: #d21a3c;
+      }
+    }
+  }
+}
+
+.post-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.fullscreen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-profile-container {
+    padding: 1rem;
   }
 
-  button {
-    background: $background-white;
-    border: 1px solid $error-color;
-    color: $error-color;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
+  .my-profile-card {
+    padding: 1rem;
 
-    &:hover {
-      text-decoration: underline;
-      background: $background-white;
-      color: $error-color;
+    .my-profile-stats {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .my-profile-avatar {
+      width: 150px;
+      height: 150px;
+      margin-top: 30px;
+    }
+  }
+
+  .my-profile-posts {
+    .post-card {
+      padding: 0.8rem;
+
+      .my-post-image,
+      .post-video {
+        max-height: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .my-profile-card {
+    .my-profile-avatar {
+      width: 120px;
+      height: 120px;
     }
   }
 }

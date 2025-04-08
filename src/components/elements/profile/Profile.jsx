@@ -8,8 +8,7 @@ import {
     faUser,
     faRss,
     faUsers,
-    faCog,
-    faUserFriends
+    faUserFriends,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
@@ -37,7 +36,13 @@ const Profile = () => {
                 if (!response.ok) throw new Error(` Fehler: ${response.status}`);
                 const data = await response.json();
                 setProfileData(data);
-                dispatch(setUser({ user: data._id }));
+
+                // 🛠️ Token + Username + full user im Redux speichern
+                dispatch(setUser({
+                    token: token,
+                    username: data.username,
+                    user: data,
+                }));
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -53,40 +58,45 @@ const Profile = () => {
         navigate("/signIn");
     };
 
-    // UI-Handling für verschiedene Zustände
-    if (!token) return <div className="error-msg"> Benutzer nicht autorisiert</div>;
-    if (loading) return <div className="loading"> Profil wird geladen...</div>;
-    if (error) return <div className="error-msg"> {error}</div>;
-    if (!profileData) return <div className="error-msg"> Keine Profildaten gefunden</div>;
+    if (!token) return <div className="error-msg">Benutzer nicht autorisiert</div>;
+    if (loading) return <div className="loading">Profil wird geladen...</div>;
+    if (error) return <div className="error-msg">{error}</div>;
+    if (!profileData) return <div className="error-msg">Keine Profildaten gefunden</div>;
 
     return (
         <div className="profile-card">
             <div className="profile-header">
-                <img src={profileData?.avatar || "/sbcf-default-avatar.png"} alt="Avatar" className="profile-avatar"/>
+                <img
+                    src={profileData?.avatar || "/sbcf-default-avatar.png"}
+                    alt="Avatar"
+                    className="profile-avatar"
+                />
                 <h2>{profileData?.fullName || "Unbekannter Benutzer"}</h2>
                 <p className="profile-job">{profileData?.jobTitle || ""}</p>
                 <p className="profile-bio">{profileData?.bio || "Keine Bio vorhanden"}</p>
             </div>
+
             <div className="profile-stats">
                 <div><strong>{profileData?.posts_count || 0}</strong> Beiträge</div>
                 <div><strong>{profileData?.followers || 0}</strong> Follower</div>
                 <div><strong>{profileData?.following || 0}</strong> Gefolgt</div>
             </div>
+
             <div className="profile-menu">
                 <button className="menu-button" onClick={() => navigate("/myprofile")}>
-                    <FontAwesomeIcon icon={faUser}/> Profile
+                    <FontAwesomeIcon icon={faUser} /> Profil
                 </button>
-                <button className="menu-button" onClick={() => navigate("/feed")}>
-                    <FontAwesomeIcon icon={faRss}/> Feed
+                <button className="menu-button" onClick={() => navigate(`/followers/${profileData.username}`)}>
+                    <FontAwesomeIcon icon={faUsers} /> Folgen mich
                 </button>
-                <button className="menu-button" onClick={() => navigate("/followers")}>
-                    <FontAwesomeIcon icon={faUsers}/> Follower
-                </button>
-                <button className="menu-button" onClick={() => navigate("/following")}>
-                    <FontAwesomeIcon icon={faUserFriends}/> Folge ich
+                <button className="menu-button" onClick={() => navigate(`/following/${profileData.username}`)}>
+                    <FontAwesomeIcon icon={faUserFriends} /> Folge ich
                 </button>
             </div>
-            <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>Profil bearbeiten</button>
+
+            <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>
+                Profil bearbeiten
+            </button>
         </div>
     );
 };

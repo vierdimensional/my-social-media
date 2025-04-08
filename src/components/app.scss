@@ -1,23 +1,35 @@
+
+
+$primary-color: #FF6A4D;
+$light-gray: #f0f2f5;
+$text-color: #000000;
+$secondary-text-color: #65676b;
+$border-color: #ddd;
+$background-white: #ffffff;
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 *{
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
 }
+
+
 
 body, html {
   margin: 0;
   padding: 0;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin: 0 20px 0 20px;
+  margin: 0;
 
   .col-3 {
     flex: 0 0 auto;
@@ -37,3 +49,4 @@ body, html {
     cursor: pointer;
   }
 }
+

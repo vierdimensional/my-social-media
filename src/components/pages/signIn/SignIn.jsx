@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux"; // Korrekter Import für useDispatch
+import { setToken } from "../../../features/features";
 import "./signIn.scss";
 
 const SignIn = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [serverError, setServerError] = useState("");
 
     const onSubmit = async (data) => {
+        setServerError(""); // Zurücksetzen des Fehlers
         try {
             const response = await fetch("http://49.13.31.246:9191/signin", {
                 method: "POST",
@@ -23,19 +28,17 @@ const SignIn = () => {
 
             const result = await response.json();
             if (response.ok) {
-                console.log("Erfolgreiche Anmeldung:", result);
                 localStorage.setItem("token", result.token);
+                dispatch(setToken({ token: result.token }));
                 navigate("/feed");
             } else {
-                console.error("Anmeldefehler:", result);
-                alert(result.message || "Autorisierungsfehler!");
+                setServerError(result.message || "Falsche Zugangsdaten");
             }
         } catch (error) {
-            console.error("⚠️ Anforderungsfehler:", error);
-            alert("Fehler beim Verbinden mit dem Server!");
+            console.error("⚠️ Verbindungsfehler:", error);
+            setServerError("Serverfehler – bitte später erneut versuchen");
         }
     };
-
     return (
         <div className="signin-page">
             <form className="signin-form" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
@@ -65,6 +68,8 @@ const SignIn = () => {
                     Login
                 </button>
                 <p className="text-signin">Haben Sie noch kein Konto? <Link to="/signup" className="signin-switch-link">Registrieren</Link></p>
+                {serverError && <p className="signin-error server-error">{serverError}</p>}
+
                 <p className="signup-footer">© 2025. Alle Rechte vorbehalten</p>
             </form>
         </div>

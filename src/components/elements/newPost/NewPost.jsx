@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-//import './newPost.scss';//
+import React, { useState } from 'react';
+import "./newPost.scss";
 
-const NewPost = () => {
-    const [posts, setPosts] = useState([]);
+const NewPost = ({ posts, setPosts }) => {
     const [newPost, setNewPost] = useState({
         title: '',
         description: '',
@@ -12,44 +10,17 @@ const NewPost = () => {
         video: ''
     });
 
-    useEffect(() => {
-        async function fetchPosts() {
-            try {
-                const jwt = localStorage.getItem('jwt');
-                const response = await fetch('http://49.13.31.246:9191/get_posts', {
-                    method: "GET",
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-access-token': jwt
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Fehler: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log("Post-Daten: ", data);
-                setPosts(data);
-            } catch (error) {
-                console.error("Fehler beim Laden der Posts:", error);
-            }
-        }
-
-        fetchPosts();
-    }, []);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewPost({ ...newPost, [name]: value });
     };
 
     const handleSubmit = async (event) => {
-        //event.preventDefault(); // Verhindert Standardformular-Submit
+        event.preventDefault(); // Das ist entscheidend - verhindert das Neuladen der Seite
 
         try {
-            const jwt = localStorage.getItem('jwt');
-            const response = await fetch('http://49.13.31.246:9191/post_post', {
+            const jwt = localStorage.getItem('token');
+            const response = await fetch('http://49.13.31.246:9191/post', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,8 +34,8 @@ const NewPost = () => {
             }
 
             const createdPost = await response.json();
-            setPosts([createdPost, ...posts]); // Neuer Post wird zur Liste hinzugefügt
-            setNewPost({ title: '', description: '', status: '', image: '', video: '' }); // Formular zurücksetzen
+            setPosts([createdPost, ...posts]); // Verwende setPosts aus den Props
+            setNewPost({ title: '', description: '', status: '', image: '', video: '' });
         } catch (error) {
             console.error("Fehler beim Erstellen des Posts:", error);
         }
@@ -110,17 +81,8 @@ const NewPost = () => {
                 />
                 <button className="new-post-button" type="submit">Veröffentlichen</button>
             </form>
-
-            <div className="profile-buttons">
-                {posts.map((post, index) => (
-                    <Link to="/feed" key={index}>
-                        <button>{post.title}</button>
-                    </Link>
-                ))}
-            </div>
         </div>
     );
-
 };
 
 export default NewPost;

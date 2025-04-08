@@ -16,7 +16,6 @@ body {
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
-  border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -38,8 +37,6 @@ body {
 
 .posts-post {
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -79,7 +76,6 @@ body {
 
 .post-media {
   width: 100%;
-  border-radius: 6px;
   overflow: hidden;
 }
 .post-media img,
@@ -89,6 +85,21 @@ body {
   display: block;
 }
 
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+.responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -96,7 +107,6 @@ body {
   background: #000000;
   color: #ffffff;
   border: none;
-  border-radius: 50%;
   width: 40px;
   height: 40px;
   font-size: 20px;
@@ -104,47 +114,93 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: background 0.3s ease;
 }
 .scroll-to-top:hover {
   background-color: #FF6A4D;
 }
 
+.post-likes {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
 .like-button,
 .delete_btn {
-  font-size: 16px;
   background: none;
   border: none;
-  color: #65676b;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-.like-button:hover,
-.delete_btn:hover {
-  color: #FF6A4D;
-}
-
-.like-button {
-  margin-right: 10px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
 }
 
 .delete_btn {
-  margin-left: 10px;
+  color: #d00;
+}
+.delete_btn:hover {
+  color: #900;
+}
+
+.author-name {
+  font-size: 20px;
   color: #000000;
 }
 
-.author-name,
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .post-likes,
 .post-author {
   font-size: 14px;
   color: #65676b;
 }
 
+.post-author-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 0 0 20px 0;
+}
+
 .author-avatar {
   width: 60px;
   height: 60px;
   object-fit: cover;
+  display: block;
+}
+
+.author-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000000;
+}
+
+.followers-btn,
+.following-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: default;
+}
+.followers-btn:hover,
+.following-btn:hover {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=posts.css.map */
