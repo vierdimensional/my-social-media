@@ -41,10 +41,12 @@ const User = () => {
 
         const fetchFollowings = async () => {
             try {
-                const cached = localStorage.getItem(`following_${username}`);
-                if (cached) {
-                    setFollowing(new Set(JSON.parse(cached)));
-                } else {
+
+         //       const cached = localStorage.getItem(`following_${username}`);
+            //    if (cached) {
+            //        setFollowing(new Set(JSON.parse(cached)));
+           //     } else {
+
                     const res = await fetch(`http://49.13.31.246:9191/followings/${username}`, {
                         headers: {
                             "Content-Type": "application/json",
@@ -57,7 +59,7 @@ const User = () => {
                     const follows = new Set(data.following.map((u) => u.username.toLowerCase()));
                     setFollowing(follows);
                     localStorage.setItem(`following_${username}`, JSON.stringify([...follows]));
-                }
+               // }
             } catch (err) {
                 console.error("❌ Fehler bei Follow-Daten:", err.message);
             }
@@ -120,10 +122,10 @@ const User = () => {
                         </div>
 
                         <button
-                            className={`follow-btn ${following.has(user.username.toLowerCase()) ? "following" : ""}`}
+                            className={`follow-btn ${following.has(user.username) ? "following" : ""}`}
                             onClick={() => toggleFollow(user.username)}
                         >
-                            {following.has(user.username.toLowerCase()) ? "Nicht folgen" : "Folgen"}
+                            {following.has(user.username) ? "Nicht folgen" : "Folgen"}
                         </button>
                     </div>
                 ))}

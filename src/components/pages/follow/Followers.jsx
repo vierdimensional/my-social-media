@@ -57,7 +57,7 @@ const Followers = () => {
 
     return (
         <div className="followers-container">
-            <h2><FontAwesomeIcon icon={faUsers} /> Follower von @{username}</h2>
+            <h2><FontAwesomeIcon icon={faUsers}/> Follower von @{username}</h2>
             <div className="followers-list">
                 {followers.map((follower) => (
                     <div
@@ -77,6 +77,7 @@ const Followers = () => {
                     </div>
                 ))}
             </div>
+            <button className="followings-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
         </div>
     );
 };

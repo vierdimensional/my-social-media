@@ -37,7 +37,7 @@ const Profile = () => {
                 const data = await response.json();
                 setProfileData(data);
 
-                // 🛠️ Token + Username + full user im Redux speichern
+                // Token + Username + full user im Redux speichern
                 dispatch(setUser({
                     token: token,
                     username: data.username,

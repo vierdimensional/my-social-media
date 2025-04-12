@@ -55,6 +55,12 @@ $success-color: #4DFFE2;
 
     .my-profile-name {
       margin: 10px 0 5px;
+      font-size: 18px;
+      color: $text-color;
+    }
+
+    h2{
+      margin: 10px 0 5px;
       font-size: 24px;
       color: $text-color;
     }
@@ -66,7 +72,7 @@ $success-color: #4DFFE2;
     }
 
     .my-profile-bio {
-      font-size: 14px;
+      font-size: 16px;
       color: $text-color;
       margin: 10px 0;
       line-height: 1.5;
@@ -99,7 +105,7 @@ $success-color: #4DFFE2;
       background: $background-white;
 
       .stat-value {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
         color: $text-color;
       }
@@ -126,7 +132,7 @@ $success-color: #4DFFE2;
     .my-profile-posts-section {
       margin-top: 2rem;
       padding-top: 1rem;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid $border-color;
     }
 
     .my-profile-posts-title {
@@ -163,7 +169,7 @@ $success-color: #4DFFE2;
       background: $text-color;
       color: $background-white;
       padding: 10px 15px;
-      font-size: 16px;
+      font-size: 14px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -187,7 +193,7 @@ $success-color: #4DFFE2;
       background: $background-white;
       color: $text-color;
       padding: 10px 15px;
-      font-size: 16px;
+      font-size: 14px;
       border: 1px solid $text-color;
       border-radius: 4px;
       cursor: pointer;
@@ -210,7 +216,7 @@ $success-color: #4DFFE2;
     background: $background-white;
     color: $text-color;
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid $text-color;
     border-radius: 4px;
     cursor: pointer;

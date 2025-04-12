@@ -41,6 +41,11 @@
 }
 .my-profile-card .my-profile-header .my-profile-name {
   margin: 10px 0 5px;
+  font-size: 18px;
+  color: #050505;
+}
+.my-profile-card .my-profile-header h2 {
+  margin: 10px 0 5px;
   font-size: 24px;
   color: #050505;
 }
@@ -50,7 +55,7 @@
   margin: 0 0 10px;
 }
 .my-profile-card .my-profile-header .my-profile-bio {
-  font-size: 14px;
+  font-size: 16px;
   color: #050505;
   margin: 10px 0;
   line-height: 1.5;
@@ -79,7 +84,7 @@
   background: #ffffff;
 }
 .my-profile-card .my-profile-stats .stat-item .stat-value {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   color: #050505;
 }
@@ -133,7 +138,7 @@
   background: #050505;
   color: #ffffff;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -155,7 +160,7 @@
   background: #ffffff;
   color: #050505;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #050505;
   border-radius: 4px;
   cursor: pointer;
@@ -175,7 +180,7 @@
   background: #ffffff;
   color: #050505;
   padding: 10px 15px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #050505;
   border-radius: 4px;
   cursor: pointer;

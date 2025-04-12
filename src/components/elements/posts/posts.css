@@ -4,8 +4,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f0f2f5;
-  color: #000000;
+  background-color: #E8ECEF;
+  color: #050505;
   margin: 0;
   padding: 0;
 }
@@ -31,15 +31,9 @@ body {
 .posts-posts {
   display: flex;
   flex-direction: column;
+  padding: 20px;
   gap: 20px;
   width: 100%;
-}
-
-.posts-post {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .posts-user {
@@ -69,7 +63,7 @@ body {
 
 .post-description {
   font-size: 16px;
-  color: #65676b;
+  color: #050505;
   text-align: left;
   line-height: 1.5;
 }
@@ -104,7 +98,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #000000;
+  background: #050505;
   color: #ffffff;
   border: none;
   width: 40px;
@@ -117,12 +111,13 @@ body {
   transition: background 0.3s ease;
 }
 .scroll-to-top:hover {
-  background-color: #FF6A4D;
+  background-color: #050505;
 }
 
 .post-likes {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 0.5rem;
 }
 
@@ -134,6 +129,7 @@ body {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .delete_btn {
@@ -145,7 +141,7 @@ body {
 
 .author-name {
   font-size: 20px;
-  color: #000000;
+  color: #050505;
 }
 
 .author-avatar {
@@ -183,7 +179,7 @@ body {
 .author-name {
   font-weight: bold;
   font-size: 16px;
-  color: #000000;
+  color: #050505;
 }
 
 .followers-btn,
@@ -192,7 +188,7 @@ body {
   border-radius: 4px;
   padding: 6px 10px;
   font-size: 13px;
-  color: #000000;
+  color: #050505;
   display: inline-flex;
   align-items: center;
   gap: 6px;

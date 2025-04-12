@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./newPost.scss";
 
-const NewPost = ({ posts, setPosts }) => {
+const NewPost = () => {
     const [newPost, setNewPost] = useState({
         title: '',
         description: '',
@@ -10,13 +10,22 @@ const NewPost = ({ posts, setPosts }) => {
         video: ''
     });
 
+    const [errorMessage, setErrorMessage] = useState('');
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewPost({ ...newPost, [name]: value });
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Das ist entscheidend - verhindert das Neuladen der Seite
+        event.preventDefault();
+        setErrorMessage('');
+
+        const { title, description } = newPost;
+        if (!title.trim() || !description.trim()) {
+            setErrorMessage('Bitte fülle Titel und Beschreibung aus.');
+            return;
+        }
 
         try {
             const jwt = localStorage.getItem('token');
@@ -33,19 +42,23 @@ const NewPost = ({ posts, setPosts }) => {
                 throw new Error(`Fehler: ${response.status}`);
             }
 
-            const createdPost = await response.json();
-            setPosts([createdPost, ...posts]); // Verwende setPosts aus den Props
-            setNewPost({ title: '', description: '', status: '', image: '', video: '' });
+            alert("✅ Beitrag erfolgreich erstellt!");
+
+            window.location.reload();
+
         } catch (error) {
             console.error("Fehler beim Erstellen des Posts:", error);
+            setErrorMessage("Beim Erstellen des Beitrags ist ein Fehler aufgetreten.");
         }
     };
 
     return (
         <div className="new-post-section">
-            <h2 className="new-post-header">Neuen Post erstellen</h2>
+            <h2 className="new-post-header">Neuer Beitrag</h2>
 
             <form className="new-post-form" onSubmit={handleSubmit}>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+
                 <input
                     className="new-post-input"
                     type="text"
@@ -62,6 +75,14 @@ const NewPost = ({ posts, setPosts }) => {
                     onChange={handleChange}
                     placeholder="Beschreibung"
                     required
+                />
+                <input
+                    className="new-post-input"
+                    type="text"
+                    name="status"
+                    value={newPost.status}
+                    onChange={handleChange}
+                    placeholder="Status"
                 />
                 <input
                     className="new-post-input"

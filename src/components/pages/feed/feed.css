@@ -9,11 +9,12 @@
   margin: 0 auto;
   padding: 20px;
   overflow: visible;
+  background-color: #ffffff;
 }
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   gap: 40px;
   background-color: #ffffff;
   min-height: 100vh;

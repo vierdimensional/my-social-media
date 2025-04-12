@@ -58,7 +58,7 @@ const Followings = () => {
     return (
         <div className="followers-container">
             <h2>
-                <FontAwesomeIcon icon={faUserPlus} /> Gefolgt von @{username}
+                <FontAwesomeIcon icon={faUserPlus}/> Gefolgt von @{username}
             </h2>
 
             <div className="followers-list">
@@ -80,6 +80,7 @@ const Followings = () => {
                     </div>
                 ))}
             </div>
+            <button className="followings-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
         </div>
     );
 };

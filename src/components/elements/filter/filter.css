@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f0f2f5;
+  background: #E8ECEF;
   padding: 20px;
 }
 
@@ -15,7 +15,7 @@
 }
 .filter-controls label {
   font-size: 16px;
-  color: #000000;
+  color: #050505;
 }
 .filtered-posts {
   width: 100%;
@@ -31,7 +31,7 @@
 }
 .filtered-posts .post h3 {
   font-size: 18px;
-  color: #000000;
+  color: #050505;
 }
 .filtered-posts .post p {
   color: #65676b;
@@ -44,7 +44,7 @@
 
 .filter-btn {
   width: 80px;
-  background: #000000;
+  background: #050505;
   color: #ffffff;
   border: none;
   padding: 5px 8px;
@@ -59,17 +59,17 @@
 
 .filter-input, .filter-controls select {
   padding: 8px;
-  border: 1px solid #000000;
+  border: 1px solid #050505;
   border-radius: 5px;
   background-color: #ffffff;
-  color: #000000;
+  color: #050505;
   font-size: 16px;
   transition: all 0.3s ease;
 }
 .filter-input:focus, .filter-controls select:focus {
-  border-color: #FF6A4D;
+  border-color: #050505;
   outline: none;
-  box-shadow: 0 0 5px rgba(255, 106, 77, 0.5);
+  box-shadow: 0 0 5px rgba(5, 5, 5, 0.5);
 }
 
 /*# sourceMappingURL=filter.css.map */

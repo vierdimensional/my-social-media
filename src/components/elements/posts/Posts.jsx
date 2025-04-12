@@ -171,7 +171,6 @@ const Posts = () => {
                     {sortedPosts.map((post) => {
                         const likesCount = post.likes.length;
                         const isLikedByUser = post.likes.some((like) => like.fromUser === user._id);
-
                         return (
                             <div key={post._id} className="posts-user">
                                 <div className="posts-post">
@@ -242,7 +241,7 @@ const Posts = () => {
                                         </button>
                                         {token && post.user?.[0]?._id === user._id && (
                                             <button className="delete_btn" onClick={() => deletePost(post._id)}>
-                                                <FontAwesomeIcon icon={faTrashAlt} />
+                                                <FontAwesomeIcon icon={faTrashAlt} /> Löschen
                                             </button>
                                         )}
                                     </div>

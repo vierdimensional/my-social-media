@@ -3,8 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import "./userProfile.scss";
-import Nav from "../../elements/nav/Nav";
-import { RiUserFollowLine, RiUserUnfollowLine } from "react-icons/ri";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faUserPlus,
+    faUserMinus,
+    faArrowLeft,
+    faHeart,
+} from "@fortawesome/free-solid-svg-icons";
 
 const UserProfile = () => {
     const { username: viewedUsername } = useParams();
@@ -104,7 +110,6 @@ const UserProfile = () => {
 
             if (!res.ok) throw new Error("Fehler beim Follow/Unfollow");
 
-            // Update localStorage
             const stored = localStorage.getItem(`following_${myUsername}`);
             const follows = stored ? new Set(JSON.parse(stored)) : new Set();
 
@@ -165,7 +170,6 @@ const UserProfile = () => {
 
     return (
         <div>
-            <Nav />
             <div className="one-user-container">
                 <div className="one-user-card">
                     <img src={userData.avatar || avatar} alt="Avatar" className="one-user-avatar" />
@@ -177,13 +181,15 @@ const UserProfile = () => {
                     <div className="one-user-btns">
                         {viewedUsername !== myUsername && (
                             <button
-                                className={`one-user-follow-btn ${isFollowing ? "one-user-unfollow" : "one-user-follow"}`}
+                                className={`follow-btn ${isFollowing ? "following" : ""}`}
                                 onClick={toggleFollow}
                             >
-                                {isFollowing ? <RiUserUnfollowLine /> : <RiUserFollowLine />}
+                                {isFollowing ? "Nicht folgen" : "Folgen"}
                             </button>
                         )}
-                        <button className="one-user-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
+                        <button className="user-profile-back-btn" onClick={() => navigate(-1)}>
+                            <FontAwesomeIcon icon={faArrowLeft} /> Zurück
+                        </button>
                     </div>
                 </div>
 
@@ -218,7 +224,7 @@ const UserProfile = () => {
                                                 : handleLike(post._id)
                                         }
                                     >
-                                        {post.likes.some((like) => like.fromUser === user) ? "❤️" : "🤍"} {post.likes.length}
+                                        <FontAwesomeIcon icon={faHeart} color={post.likes.some((like) => like.fromUser === user) ? "red" : "gray"} /> {post.likes.length}
                                     </button>
                                 </div>
                             </div>

@@ -1,9 +1,11 @@
-$primary-color: #FF6A4D;
-$light-gray: #f0f2f5;
-$text-color: #000000;
+$primary-color: #050505;
+$light-gray: #E8ECEF;
+$text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
+$error-color: #FF4D58;
+$success-color: #4DFFE2;
 
 * {
   box-sizing: border-box;
@@ -17,7 +19,6 @@ body {
   padding: 0;
 }
 
-// Hauptcontainer
 .posts-container {
   width: 100%;
   max-width: 1005px;
@@ -29,7 +30,6 @@ body {
   gap: 20px;
 }
 
-// Bereich für die ganze Postliste
 .posts-section {
   display: flex;
   flex-direction: column;
@@ -37,20 +37,14 @@ body {
   width: 100%;
 }
 
-// Einzelner Post-Container
 .posts-posts {
   display: flex;
   flex-direction: column;
+  padding: 20px;
   gap: 20px;
   width: 100%;
 }
 
-.posts-post {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
 .posts-user {
   display: flex;
@@ -61,7 +55,6 @@ body {
   padding: 10px 0;
 }
 
-// Post-Header oder Steuerleiste (z. B. Filter, Likes, Buttons)
 .posts-controls {
   display: flex;
   gap: 10px;
@@ -71,7 +64,6 @@ body {
   padding: 10px 0;
 }
 
-// Titel des Beitrags
 .post-title {
   font-size: 20px;
   font-weight: bold;
@@ -79,15 +71,13 @@ body {
   text-align: left;
 }
 
-// Beschreibung des Beitrags
 .post-description {
   font-size: 16px;
-  color: $secondary-text-color;
+  color: $primary-color;
   text-align: left;
   line-height: 1.5;
 }
 
-// Medien (Bild/Video)
 .post-media {
   width: 100%;
   overflow: hidden;
@@ -117,7 +107,6 @@ body {
   }
 }
 
-// Scroll-to-top Button
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -142,6 +131,7 @@ body {
 .post-likes {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 0.5rem;
 }
 
@@ -153,6 +143,7 @@ body {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
+  gap:15px;
 }
 
 .delete_btn {

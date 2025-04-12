@@ -1,9 +1,11 @@
-$primary-color: #FF6A4D;
-$light-gray: #f0f2f5;
-$text-color: #000000;
+$primary-color: #050505;
+$light-gray: #E8ECEF;
+$text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
+$error-color: #FF4D58;
+$success-color: #4DFFE2;
 
 .feed-page {
   background-color: $background-white;
@@ -16,11 +18,12 @@ $background-white: #ffffff;
   margin: 0 auto;
   padding: 20px;
   overflow: visible;
+  background-color: $background-white;
 }
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   gap: 40px;
   background-color:$background-white;
   min-height: 100vh;

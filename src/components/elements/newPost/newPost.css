@@ -26,6 +26,7 @@
 .new-post-form input,
 .new-post-form textarea {
   width: 100%;
+  font-family: "Roboto", sans-serif;
 }
 
 .profile-buttons a {
