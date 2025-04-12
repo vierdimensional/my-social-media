@@ -11,6 +11,7 @@ import EditMyProfile from "./pages/editMyProfile/EditMyProfile";
 import Followers from "./pages/follow/Followers";
 import Following from "./pages/following/Following";
 import NotFoundPage from "./pages/notFoundPage/NotFoundPage";
+import AllUser from "./pages/allUser/AllUser";
 import "./app.scss";
 
 
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path='/signIn' element={<SignIn />} />
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/myProfile' element={<MyProfile />} />
+                <Route path='/alluser' element={<AllUser />} />
                 <Route path="/followers/:username" element={<Followers />} />
                 <Route path="/following/:username" element={<Following />} />
                 <Route path='/feed' element={<Feed />} />

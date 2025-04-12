@@ -1,0 +1,142 @@
+.all-user-list-container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: "Roboto", sans-serif;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.all-user-list-container h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #050505;
+  margin-bottom: 12px;
+}
+
+.title-user {
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.user-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 12px;
+  margin: 10px 0 20px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #E8ECEF;
+  outline: none;
+}
+.user-search-input:focus {
+  background-color: rgb(238.0153846154, 240.9692307692, 243.1846153846);
+  border-color: #050505;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #050505;
+  transition: background-color 0.2s ease;
+}
+.user-item:hover {
+  background-color: rgb(250.0461538462, 250.9076923077, 251.5538461538);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-grow: 1;
+}
+.user-info:hover {
+  cursor: pointer;
+}
+.user-info:hover h4, .user-info:hover p {
+  text-decoration: underline;
+}
+.user-info h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+.user-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #65676b;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #E8ECEF;
+}
+
+.follow-btn {
+  min-width: 85px;
+  background: #050505;
+  color: #ffffff;
+  border: 1px solid #050505;
+  padding: 6px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.follow-btn:hover {
+  border: 1px solid #050505;
+}
+.follow-btn.following {
+  background-color: #ffffff;
+  color: #050505;
+  border: 1px solid #050505;
+  text-decoration: underline;
+}
+.follow-btn.following:hover {
+  text-decoration: underline;
+  border: 1px solid #050505;
+  background: #E8ECEF;
+}
+
+.loading, .error-msg {
+  padding: 1rem;
+  text-align: center;
+  color: #050505;
+}
+
+.error-msg {
+  color: #FF6A4D;
+}
+
+.user-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.user-list-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=allUser.css.map */

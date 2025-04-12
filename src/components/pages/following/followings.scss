@@ -65,6 +65,13 @@ $success-color: #4DFFE2;
     display: flex;
     flex-direction: column;
 
+    h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: $text-color;
+    }
+
     h4 {
       margin: 0;
       font-size: 18px;
@@ -108,5 +115,31 @@ $success-color: #4DFFE2;
     text-decoration: underline;
     background: $background-white;
     color: $text-color;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+  .followings-back-btn {
+    font-size: 16px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  .followings-back-btn {
+    font-size: 14px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .followings-back-btn {
+    font-size: 14px;
+    padding: 4px 6px;
+    gap: 2px;
   }
 }

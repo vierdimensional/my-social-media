@@ -149,7 +149,8 @@ body {
 
 
 .author-name {
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: bold;
   color: $text-color;
 }
 
@@ -186,13 +187,9 @@ body {
   object-fit: cover;
   display: block;
 }
-
-.author-name {
-  font-weight: bold;
-  font-size: 24px;
-  color: $text-color;
+.post-description {
+  font-size: 16px;
 }
-
 .followers-btn,
 .following-btn {
   border: none;
@@ -209,3 +206,117 @@ body {
     text-decoration: underline;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+.author-name {
+  font-size: 18px;
+}
+
+  .post-title {
+    font-size: 22px;
+  }
+
+  .post-description {
+    font-size: 16px;
+  }
+
+  .post-media {
+    width: 100%;
+  }
+
+  body,
+  p {
+    font-size: 16px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
+
+/* Handy spezifische Anpassungen */
+@media screen and (max-width: 767px) {
+  .author-name {
+    font-size: 18px;
+  }
+
+  .post-title {
+    font-size: 20px;
+  }
+
+  .post-description {
+    font-size: 14px;
+  }
+
+  .post-media {
+width: 100%;
+  }
+
+  body,
+  p {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+}
+
+/* Handy spezifische Anpassungen für sehr kleine Bildschirme */
+@media screen and (max-width: 375px) {
+
+  .author-name {
+    font-size: 18px;
+  }
+
+  .post-title {
+    font-size: 18px;
+  }
+
+  .post-description {
+    font-size: 14px;
+  }
+
+  .post-media {
+    width: 100%;
+  }
+
+  body,
+  p {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
+

@@ -1,38 +1,40 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faSearch, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {faHome, faUser, faSearch, faSignOutAlt, faUsers} from '@fortawesome/free-solid-svg-icons';
 import './nav.scss';
-import { logoutUser } from "../../../features/features";
-import { useDispatch } from "react-redux";
+import { logoutUser } from '../../../features/features';
+import { useDispatch } from 'react-redux';
 
 const Nav = () => {
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
         dispatch(logoutUser());
-        navigate("/signIn");
+        navigate('/signIn');
     };
 
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
-            setSearchQuery("");
+            setSearchQuery('');
         }
     };
 
     return (
         <div className="nav-container">
             <nav className="nav">
-                <div className="nav-section nav-left">
+                {/* Home-Link */}
+                <div className="nav-section nav-start">
                     <Link to="/feed" className="nav-link">
                         <FontAwesomeIcon icon={faHome} /> Home
                     </Link>
                 </div>
 
+                {/* Suchfeld */}
                 <div className="nav-section nav-center">
                     <form className="search-form" onSubmit={handleSearch}>
                         <input
@@ -48,13 +50,18 @@ const Nav = () => {
                     </form>
                 </div>
 
+                {/* Links zu Mein Profil und Alle Nutzer */}
                 <div className="nav-section nav-right">
                     <Link to="/myprofile" className="nav-link">
                         <FontAwesomeIcon icon={faUser} /> Mein Profil
                     </Link>
+                    <Link to="/alluser" className="nav-link">
+                        <FontAwesomeIcon icon={faUsers} />  Alle User
+                    </Link>
                 </div>
 
-                <div className="nav-section nav-logout">
+                {/* Logout-Button */}
+                <div className="nav-section nav-end">
                     <button className="logout-btn" onClick={handleLogout}>
                         <FontAwesomeIcon icon={faSignOutAlt} /> Abmelden
                     </button>

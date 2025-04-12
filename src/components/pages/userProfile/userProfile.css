@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .one-user-container {
   max-width: 600px;
   margin: 20px auto;
@@ -158,6 +159,93 @@ h3 {
 }
 .one-user-error p {
   color: #FF4D58;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .one-user-name {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 22px;
+  }
+  .post-description {
+    font-size: 16px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}
+/* Handy spezifische Anpassungen */
+@media screen and (max-width: 767px) {
+  .one-user-name {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 20px;
+  }
+  .post-description {
+    font-size: 14px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+}
+/* Handy spezifische Anpassungen für sehr kleine Bildschirme */
+@media screen and (max-width: 375px) {
+  .one-user-name {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 18px;
+  }
+  .post-description {
+    font-size: 14px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 20px;
+  }
 }
 
 /*# sourceMappingURL=userProfile.css.map */

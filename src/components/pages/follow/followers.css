@@ -7,6 +7,27 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+@media screen and (max-width: 1023px) {
+  .followers-container {
+    max-width: 300px;
+    padding: 20px;
+    margin: 10px auto;
+  }
+}
+@media screen and (max-width: 767px) {
+  .followers-container {
+    max-width: 260px;
+    padding: 10px;
+    margin: 10px auto;
+  }
+}
+@media screen and (max-width: 387px) {
+  .followers-container {
+    max-width: 200px;
+    padding: 5px;
+    margin: 5px auto;
+  }
+}
 .followers-container h2 {
   font-size: 24px;
   color: #050505;
@@ -49,6 +70,12 @@
   display: flex;
   flex-direction: column;
 }
+.follower-card .follower-info h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #050505;
+}
 .follower-card .follower-info h4 {
   margin: 0;
   font-size: 16px;
@@ -70,7 +97,7 @@
   padding: 20px;
 }
 
-.followings-back-btn {
+.followers-back-btn {
   background: #ffffff;
   color: #050505;
   margin-top: 20px;
@@ -84,10 +111,32 @@
   align-items: center;
   gap: 8px;
 }
-.followings-back-btn:hover {
+.followers-back-btn:hover {
   text-decoration: underline;
   background: #ffffff;
   color: #050505;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .followers-back-btn {
+    font-size: 16px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .followers-back-btn {
+    font-size: 14px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .followers-back-btn {
+    font-size: 14px;
+    padding: 4px 6px;
+    gap: 2px;
+  }
 }
 
 /*# sourceMappingURL=followers.css.map */

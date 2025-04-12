@@ -29,7 +29,7 @@
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   color: #050505;
 }
 
@@ -38,7 +38,7 @@ h2 {
 }
 
 .profile-bio {
-  font-size: 18px;
+  font-size: 16px;
   color: #050505;
   text-align: center;
   line-height: 1.4;
@@ -76,7 +76,7 @@ h2 {
   transition: background 0.2s ease;
 }
 .menu-button:hover {
-  background: #E8ECEF;
+  text-decoration: underline;
 }
 
 .profile-view-btn {

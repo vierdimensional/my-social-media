@@ -1,3 +1,5 @@
+@charset "UTF-8";
+/* Globale Styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   box-sizing: border-box;
@@ -12,26 +14,62 @@ body, html {
   background-color: #ffffff;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: 0;
+/* Desktop und Laptop */
+@media screen and (min-width: 1024px) {
+  .dashboard-layout {
+    display: flex;
+    flex-direction: row;
+  }
+  .sidebar-left,
+  .sidebar-right {
+    display: block;
+    width: 25%;
+  }
+  .main-content {
+    width: 50%;
+    padding: 20px;
+  }
 }
-.row .col-3 {
-  flex: 0 0 auto;
-  width: 25%;
+/* Tablet */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  .dashboard-layout {
+    display: block;
+  }
+  .sidebar-left,
+  .sidebar-right {
+    display: none; /* Entfernt Profile und User auf Tablets */
+  }
+  .main-content {
+    width: 100%;
+  }
+  /* Zusätzliche Anpassungen für Tablet */
+  .nav-container {
+    padding: 0 10px;
+  }
 }
-.row .col-6 {
-  display: flex;
-  width: 45%;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-self: stretch;
-}
-.row:hover {
-  text-decoration: underline;
-  cursor: pointer;
+/* Handy */
+@media screen and (max-width: 767px) {
+  .dashboard-layout {
+    display: block;
+  }
+  .sidebar-left,
+  .sidebar-right {
+    display: none; /* Entfernt Profile und User auf Handys */
+  }
+  .main-content {
+    width: 100%;
+  }
+  .nav-section.nav-left {
+    display: block;
+    padding-left: 15px;
+  }
+  .nav-section.nav-logout {
+    display: block;
+  }
+  /* Zeigt AllUser auf Handys */
+  .nav-section.nav-allusers {
+    display: block;
+  }
 }
 
 /*# sourceMappingURL=app.css.map */

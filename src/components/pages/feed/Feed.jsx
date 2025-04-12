@@ -9,18 +9,19 @@ import Nav from "../../elements/nav/Nav";
 const Feed = () => {
     return (
         <div className="box-content">
-            <Nav/>
+            <Nav />
             <div className="dashboard-layout">
                 <aside className="sidebar-left">
-                    <Profile/>
+                    <Profile />
                 </aside>
+
                 <main className="main-content">
-                    <NewPost/>
-                    <Posts/>
+                    <NewPost />
+                    <Posts />
                 </main>
 
                 <aside className="sidebar-right">
-                    <User/>
+                    <User />
                 </aside>
             </div>
         </div>

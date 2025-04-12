@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .edit-profile-container {
   max-width: 600px;
   margin: 20px auto;
@@ -252,6 +253,93 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .edit-profile-title {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 22px;
+  }
+  .post-description {
+    font-size: 16px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}
+/* Handy spezifische Anpassungen */
+@media screen and (max-width: 767px) {
+  .edit-profile-title {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 20px;
+  }
+  .post-description {
+    font-size: 14px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 20px;
+  }
+}
+/* Handy spezifische Anpassungen für sehr kleine Bildschirme */
+@media screen and (max-width: 375px) {
+  .edit-profile-title {
+    font-size: 18px;
+  }
+  .post-title {
+    font-size: 18px;
+  }
+  .post-description {
+    font-size: 14px;
+  }
+  .post-media {
+    width: 100%;
+  }
+  body,
+  p {
+    font-size: 14px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 20px;
+  }
 }
 
 /*# sourceMappingURL=editMyProfile.css.map */

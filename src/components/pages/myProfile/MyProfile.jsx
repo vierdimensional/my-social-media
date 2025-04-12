@@ -2,7 +2,15 @@ import React, {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {logoutUser, setUser} from "../../../features/features";
 import {useNavigate} from "react-router-dom";
-import { faPen, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+    faPen,
+    faArrowLeft,
+    faTrashAlt,
+    faUsers,
+    faUserFriends,
+    faUserPlus,
+    faUserGroup
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./myProfile.scss";
 import Nav from "../../elements/nav/Nav";
@@ -93,6 +101,9 @@ const MyProfile = () => {
     if (error) return <div className="my-profile-error-msg">Fehler: {error}</div>;
     if (!profileData) return <div className="my-profile-error-msg">Keine Daten</div>;
 
+    const followersCount = userPosts?.[0]?.user?.[0]?.followers?.length || 0;
+    const followingCount = userPosts?.[0]?.user?.[0]?.following?.length || 0;
+
     return (
         <div className="box-content">
             <div>
@@ -108,8 +119,14 @@ const MyProfile = () => {
                         </div>
                         <div className="my-profile-stats">
                             <div><strong>{profileData.posts_count}</strong> Beiträge</div>
-                            <div><strong>{profileData.followers}</strong> Follower</div>
-                            <div><strong>{profileData.following}</strong> Abonniert</div>
+                            <button className="link-followers"
+                                    onClick={() => navigate(`/followers/${profileData.username}`)}>
+                                <FontAwesomeIcon icon={faUserGroup}/> {followingCount} Abonnenten
+                            </button>
+                            <button className="link-followings"
+                                    onClick={() => navigate(`/following/${profileData.username}`)}>
+                                <FontAwesomeIcon icon={faUserPlus}  /> {followersCount} Abonnierte
+                            </button>
                         </div>
                         <div className="my-profile-actions">
                             <button className="edit-my-profile-btn" onClick={() => navigate("/editMyProfile")}>
@@ -117,7 +134,7 @@ const MyProfile = () => {
                             </button>
 
                             <button className="my-profile-back-btn" onClick={() => navigate("/feed")}>
-                                <FontAwesomeIcon icon={faArrowLeft}/> Zurück
+                            <FontAwesomeIcon icon={faArrowLeft}/> Zurück
                             </button>
                         </div>
                         <div className="my-profile-posts">

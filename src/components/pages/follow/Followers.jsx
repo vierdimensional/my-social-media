@@ -82,7 +82,7 @@ const Followers = () => {
                             </div>
                         ))}
                     </div>
-                    <button className="followings-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
+                    <button className="followers-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
                 </div>
             </div>
         </div>

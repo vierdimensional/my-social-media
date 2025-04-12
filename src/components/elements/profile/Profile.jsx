@@ -8,7 +8,7 @@ import {
     faUser,
     faRss,
     faUsers,
-    faUserFriends,
+    faUserFriends, faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
@@ -89,7 +89,7 @@ const Profile = () => {
                     <FontAwesomeIcon icon={faUsers}/> Abonnenten
                 </button>
                 <button className="menu-button" onClick={() => navigate(`/following/${profileData.username}`)}>
-                    <FontAwesomeIcon icon={faUserFriends}/> Abonnierte
+                    <FontAwesomeIcon icon={faUserPlus}/> Abonnierte
                 </button>
                 <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>
                     Profil bearbeiten
