@@ -7,10 +7,11 @@ import "./userProfile.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faUserPlus,
-    faUserMinus,
     faArrowLeft,
     faHeart,
+    faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
+import Nav from "../../elements/nav/Nav";
 
 const UserProfile = () => {
     const { username: viewedUsername } = useParams();
@@ -168,77 +169,93 @@ const UserProfile = () => {
     if (error) return <div className="one-user-error">{error}</div>;
     if (!userData) return <div className="one-user-error">❌ Benutzerprofil konnte nicht geladen werden</div>;
 
-    return (
-        <div>
-            <div className="one-user-container">
-                <div className="one-user-card">
-                    <img src={userData.avatar || avatar} alt="Avatar" className="one-user-avatar" />
-                    <h2 className="one-user-name">{userData.fullName}</h2>
-                    <p><strong>Benutzername:</strong> <br />@{userData.username}</p>
-                    <p><strong>Alter:</strong> {userData.age}</p>
-                    <p style={{ whiteSpace: "pre-wrap" }}><strong>Über mich:</strong> <br />{userData.bio}</p>
-                    <p><strong>Beiträge:</strong> {userData.posts_count}</p>
-                    <div className="one-user-btns">
-                        {viewedUsername !== myUsername && (
-                            <button
-                                className={`follow-btn ${isFollowing ? "following" : ""}`}
-                                onClick={toggleFollow}
-                            >
-                                {isFollowing ? "Nicht folgen" : "Folgen"}
-                            </button>
-                        )}
-                        <button className="user-profile-back-btn" onClick={() => navigate(-1)}>
-                            <FontAwesomeIcon icon={faArrowLeft} /> Zurück
-                        </button>
-                    </div>
-                </div>
+    const followersCount = userPosts?.[0]?.user?.[0]?.followers?.length || 0;
+    const followingCount = userPosts?.[0]?.user?.[0]?.following?.length || 0;
 
-                <div className="one-user-posts">
-                    <h3>Beiträge des Benutzers</h3>
-                    {userPosts.length > 0 ? (
-                        userPosts.map((post) => (
-                            <div key={post._id} className="feed-post">
-                                <div className="post-header">
-                                    <img src={userData.avatar || "/default-avatar.png"} alt="Avatar" className="author-avatar" />
-                                    <span className="author-name">{userData.fullName || userData.username}</span>
+    return (
+        <div className="box-content">
+            <div>
+                <Nav />
+                <div className="one-user-container">
+                    <div className="one-user-card">
+                        <img src={userData.avatar || avatar} alt="Avatar" className="one-user-avatar" />
+                        <h2 className="one-user-name">{userData.fullName}</h2>
+                        <p><strong>Benutzername:</strong> <br />@{userData.username}</p>
+                        <p><strong>Alter:</strong> {userData.age}</p>
+                        <p style={{ whiteSpace: "pre-wrap" }}><strong>Über mich:</strong> <br />{userData.bio}</p>
+                        <p><strong>Beiträge:</strong> {userData.posts_count}</p>
+                        <div className="one-user-follow-statistics">
+                            <button
+                                className="user-profile-followers-btn"
+                                onClick={() => navigate(`/followers/${userData.username}`)}
+                            >
+                                <FontAwesomeIcon icon={faUserGroup} /> {followersCount} Abonnenten
+                            </button>
+                            <button
+                                className="user-profile-following-btn"
+                                onClick={() => navigate(`/following/${userData.username}`)}
+                            >
+                                <FontAwesomeIcon icon={faUserPlus} /> {followingCount} Abonnierte
+                            </button>
+                        </div>
+
+                        <div className="one-user-btns">
+                            {viewedUsername !== myUsername && (
+                                <button
+                                    className={`one-user-follow-btn ${isFollowing ? "following" : ""}`}
+                                    onClick={toggleFollow}
+                                >
+                                    {isFollowing ? "Nicht folgen" : "Folgen"}
+                                </button>
+                            )}
+                            <button className="user-profile-back-btn" onClick={() => navigate(-1)}>
+                                <FontAwesomeIcon icon={faArrowLeft} /> Zurück
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="one-user-posts">
+                        {userPosts.length > 0 ? (
+                            userPosts.map((post) => (
+                                <div key={post._id} className="feed-post">
+                                    {post.title && <h3 className="post-title">{post.title}</h3>}
+                                    {post.description && <p className="post-description">{post.description}</p>}
+                                    {post.image && (
+                                        <img
+                                            src={post.image}
+                                            alt="Beitragsbild"
+                                            className="post-media"
+                                            onClick={() => setFullscreenImage(post.image)}
+                                        />
+                                    )}
+                                    {post.video && (
+                                        <iframe title="Beitragsvideo" src={post.video} className="post-video" allowFullScreen></iframe>
+                                    )}
+                                    <div className="post-actions">
+                                        <button
+                                            className="like-button"
+                                            onClick={() =>
+                                                post.likes.some((like) => like.fromUser === user)
+                                                    ? deleteLike(post._id)
+                                                    : handleLike(post._id)
+                                            }
+                                        >
+                                            <FontAwesomeIcon icon={faHeart} color={post.likes.some((like) => like.fromUser === user) ? "red" : "gray"} /> {post.likes.length}
+                                        </button>
+                                    </div>
                                 </div>
-                                {post.title && <h3 className="post-title">{post.title}</h3>}
-                                {post.description && <p className="post-description">{post.description}</p>}
-                                {post.image && (
-                                    <img
-                                        src={post.image}
-                                        alt="Beitragsbild"
-                                        className="post-media"
-                                        onClick={() => setFullscreenImage(post.image)}
-                                    />
-                                )}
-                                {post.video && (
-                                    <iframe title="Beitragsvideo" src={post.video} className="post-video" allowFullScreen></iframe>
-                                )}
-                                <div className="post-actions">
-                                    <button
-                                        className="like-button"
-                                        onClick={() =>
-                                            post.likes.some((like) => like.fromUser === user)
-                                                ? deleteLike(post._id)
-                                                : handleLike(post._id)
-                                        }
-                                    >
-                                        <FontAwesomeIcon icon={faHeart} color={post.likes.some((like) => like.fromUser === user) ? "red" : "gray"} /> {post.likes.length}
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="no-posts">❌ Dieser Benutzer hat noch keine Beiträge.</p>
+                            ))
+                        ) : (
+                            <p className="no-posts">❌ Dieser Benutzer hat noch keine Beiträge.</p>
+                        )}
+                    </div>
+
+                    {fullscreenImage && (
+                        <div className="fullscreen-image" onClick={() => setFullscreenImage(null)}>
+                            <img src={fullscreenImage} alt="Vollbild" />
+                        </div>
                     )}
                 </div>
-
-                {fullscreenImage && (
-                    <div className="fullscreen-image" onClick={() => setFullscreenImage(null)}>
-                        <img src={fullscreenImage} alt="Vollbild" />
-                    </div>
-                )}
             </div>
         </div>
     );

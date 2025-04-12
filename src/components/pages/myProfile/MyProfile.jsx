@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import { faPen, faArrowLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./myProfile.scss";
+import Nav from "../../elements/nav/Nav";
 
 const MyProfile = () => {
     const navigate = useNavigate();
@@ -93,73 +94,75 @@ const MyProfile = () => {
     if (!profileData) return <div className="my-profile-error-msg">Keine Daten</div>;
 
     return (
-        <div>
-            <div className="my-profile-container">
-                <div className="my-profile-card">
-                    <div className="my-profile-header">
-                        <img src={profileData.avatar} alt="Avatar" className="my-profile-avatar"/>
-                        <h2>{profileData.fullName}</h2>
-                        <p className="my-profile-name">@{profileData.username}</p>
-                        <p className="my-profile-bio">{profileData.bio}</p>
-                        <p>Alter: <strong>{profileData.age}</strong></p>
-                    </div>
-                    <div className="my-profile-stats">
-                        <div><strong>${profileData.balance}</strong> Guthaben</div>
-                        <div><strong>{profileData.posts_count}</strong> Beiträge</div>
-                        <div><strong>{profileData.followers}</strong> Follower</div>
-                        <div><strong>{profileData.following}</strong> Abonniert</div>
-                    </div>
-                    <div className="my-profile-actions">
-                        <button className="edit-my-profile-btn" onClick={() => navigate("/editMyProfile")}>
-                            <FontAwesomeIcon icon={faPen}/> Bearbeiten
-                        </button>
-
-                        <button className="one-user-back-btn" onClick={() => navigate("/feed")}>
-                            <FontAwesomeIcon icon={faArrowLeft}/> Zurück
-                        </button>
-                </div>
-                <div className="my-profile-posts">
-                    {userPosts.map((post) => (
-                        <div key={post._id} className="post-card">
-                            {post.title && <h4 className="post-title">{post.title}</h4>}
-                            {post.description && <p className="post-description">{post.description}</p>}
-                            {post.image && (
-                                <img
-                                    src={post.image}
-                                    alt="Bild"
-                                    className="my-post-image"
-                                    onClick={() => setFullscreenImage(post.image)}
-                                />
-                            )}
-                            {post.video && getYouTubeEmbedUrl(post.video) && (
-                                <iframe
-                                    src={getYouTubeEmbedUrl(post.video)}
-                                    title="Video"
-                                    className="post-video"
-                                    allowFullScreen
-                                />
-                            )}
-                            <div className="post-actions">
-                                <button
-                                    className="delete-button"
-                                    onClick={() => deletePost(post._id)}
-                                    title="Beitrag löschen"
-                                >
-                                    <FontAwesomeIcon icon={faTrashAlt}/> Beitrag löschen
-                                </button>
-                            </div>
+        <div className="box-content">
+            <div>
+                <Nav/>
+                <div className="my-profile-container">
+                    <div className="my-profile-card">
+                        <div className="my-profile-header">
+                            <img src={profileData.avatar} alt="Avatar" className="my-profile-avatar"/>
+                            <h2>{profileData.fullName}</h2>
+                            <p className="my-profile-name">@{profileData.username}</p>
+                            <p className="my-profile-bio">{profileData.bio}</p>
+                            <p>Alter: <strong>{profileData.age}</strong></p>
                         </div>
-                    ))}
-                </div>
-                    {fullscreenImage && (
-                        <div className="fullscreen-image" onClick={() => setFullscreenImage(null)}>
-                        <img src={fullscreenImage} alt="Vollbild"/>
+                        <div className="my-profile-stats">
+                            <div><strong>{profileData.posts_count}</strong> Beiträge</div>
+                            <div><strong>{profileData.followers}</strong> Follower</div>
+                            <div><strong>{profileData.following}</strong> Abonniert</div>
+                        </div>
+                        <div className="my-profile-actions">
+                            <button className="edit-my-profile-btn" onClick={() => navigate("/editMyProfile")}>
+                                <FontAwesomeIcon icon={faPen}/> Bearbeiten
+                            </button>
+
+                            <button className="my-profile-back-btn" onClick={() => navigate("/feed")}>
+                                <FontAwesomeIcon icon={faArrowLeft}/> Zurück
+                            </button>
+                        </div>
+                        <div className="my-profile-posts">
+                            {userPosts.map((post) => (
+                                <div key={post._id} className="post-card">
+                                    {post.title && <h4 className="post-title">{post.title}</h4>}
+                                    {post.description && <p className="post-description">{post.description}</p>}
+                                    {post.image && (
+                                        <img
+                                            src={post.image}
+                                            alt="Bild"
+                                            className="my-post-image"
+                                            onClick={() => setFullscreenImage(post.image)}
+                                        />
+                                    )}
+                                    {post.video && getYouTubeEmbedUrl(post.video) && (
+                                        <iframe
+                                            src={getYouTubeEmbedUrl(post.video)}
+                                            title="Video"
+                                            className="post-video"
+                                            allowFullScreen
+                                        />
+                                    )}
+                                    <div className="post-actions">
+                                        <button
+                                            className="delete-button"
+                                            onClick={() => deletePost(post._id)}
+                                            title="Beitrag löschen"
+                                        >
+                                            <FontAwesomeIcon icon={faTrashAlt}/> Beitrag löschen
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {fullscreenImage && (
+                            <div className="fullscreen-image" onClick={() => setFullscreenImage(null)}>
+                                <img src={fullscreenImage} alt="Vollbild"/>
+                            </div>
+                        )}
                     </div>
-                )}
                 </div>
             </div>
         </div>
     );
-};
+            };
 
-export default MyProfile;
+            export default MyProfile;

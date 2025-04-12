@@ -4,7 +4,8 @@ $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 .user-list-container {
@@ -28,7 +29,7 @@ $success-color: #4DFFE2;
   }
 }
 
-.uberschrift_user {
+.title-user {
   text-align: left;
   font-size: 16px;
   font-weight: bold;

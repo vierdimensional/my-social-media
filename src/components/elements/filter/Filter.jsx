@@ -8,7 +8,6 @@ const Filter = ({ posts }) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Beiträge filtern
     const filteredPosts = filterOption === "media"
         ? posts.filter((post) => post.image && post.image.trim() !== "")
         : posts;
@@ -26,7 +25,6 @@ const Filter = ({ posts }) => {
 
     const sortedPosts = [...filteredPosts].sort((a, b) => getPostDate(b) - getPostDate(a));
 
-    // UI-Zustände
     if (!token) return <div className="error-msg">⚠️ Der Benutzer ist nicht autorisiert</div>;
     if (loading) return <div className="loading">⏳ Laden...</div>;
     if (error) return <div className="error-msg">❌ Fehler: {error}</div>;

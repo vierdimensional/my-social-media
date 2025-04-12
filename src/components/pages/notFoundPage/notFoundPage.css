@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #f0f2f5;
+  background: #E8ECEF;
   text-align: center;
   padding: 20px;
 }
@@ -20,7 +20,7 @@
 .not-found-title {
   font-size: 32px;
   font-weight: bold;
-  color: #000000;
+  color: #050505;
   margin-bottom: 10px;
 }
 
@@ -31,7 +31,7 @@
 
 .not-found-button {
   width: 80px;
-  background: #000000;
+  background: #050505;
   color: #ffffff;
   border: none;
   padding: 5px 8px;

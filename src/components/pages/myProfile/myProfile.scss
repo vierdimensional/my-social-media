@@ -1,10 +1,11 @@
-$primary-color: #FF6A4D;
+$primary-color: #050505;
 $light-gray: #E8ECEF;
 $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 
@@ -35,18 +36,14 @@ $success-color: #4DFFE2;
     align-items: center;
     text-align: center;
 
-    .avatar-container {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 15px;
-    }
-
     .my-profile-avatar {
       width: 120px;
       height: 120px;
       object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 2px solid $light-gray;
+
     }
 
     .my-post-image {
@@ -77,17 +74,6 @@ $success-color: #4DFFE2;
       margin: 10px 0;
       line-height: 1.5;
       max-width: 400px;
-    }
-
-    .my-profile-balance {
-      margin-top: 10px;
-      font-size: 14px;
-      color: $secondary-text-color;
-
-      .balance-amount {
-        font-weight: bold;
-        color: $text-color;
-      }
     }
   }
 
@@ -212,7 +198,7 @@ $success-color: #4DFFE2;
     }
   }
 
-  .one-user-back-btn {
+  .my-profile-back-btn {
     background: $background-white;
     color: $text-color;
     padding: 10px 15px;

@@ -21,7 +21,7 @@
   margin-top: 10px;
 }
 .search-container p.error-msg {
-  color: #FF4D58;
+  color: #FF6A4D;
 }
 .search-container .search-results {
   list-style: none;
@@ -56,7 +56,7 @@
 .search-container .back-to-feed-btn {
   margin-top: 20px;
   padding: 8px 16px;
-  background-color: #FF6A4D;
+  background-color: #050505;
   color: white;
   border: none;
   border-radius: 4px;
@@ -69,7 +69,7 @@
   margin-right: 8px;
 }
 .search-container .back-to-feed-btn:hover {
-  background-color: rgb(255, 63.308988764, 26);
+  background-color: black;
 }
 
 /*# sourceMappingURL=search.css.map */

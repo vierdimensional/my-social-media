@@ -49,13 +49,13 @@ const FolgenMir = () => {
     if (loading) return <div className="followers-loading">⏳ Wird geladen...</div>;
     if (error) return <div className="followers-error">{error}</div>;
 
-    console.log("✅ Endgültige Liste der Follower:", followers);
+    console.log("✅ Endgültige Liste der Abonnenten:", followers);
 
-    if (!followers || followers.length === 0) return <div className="followers-empty">❌ Keine Follower gefunden</div>;
+    if (!followers || followers.length === 0) return <div className="followers-empty">❌ Keine Abonnenten gefunden</div>;
 
     return (
         <div className="followers-container">
-            <h2>Folgen mir</h2>
+            <h2>Abonnenten</h2>
             <div className="followers-list">
                 {followers.map((follower) => (
                     <div key={follower._id} className="follower-card"

@@ -1,10 +1,11 @@
-$primary-color: #FF6A4D;
+$primary-color: #050505;
 $light-gray: #E8ECEF;
 $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 .edit-profile-container {
@@ -54,15 +55,14 @@ $success-color: #4DFFE2;
       display: flex;
       justify-content: center;
 
-.avatar-preview{
-  border-radius: 50%;
-}
       .avatar-preview img{
         width: 120px;
         height: 120px;
         object-fit: cover;
         border: 2px solid $light-gray;
         border-radius: 4px;
+        border-radius: 50%;
+
       }
       image{
         border-radius: 50%;
@@ -131,7 +131,7 @@ $success-color: #4DFFE2;
           }
 
           &.active {
-            background: lighten($primary-color, 30%);
+            background: $light-gray;
             color: $primary-color;
           }
         }
@@ -196,9 +196,6 @@ $success-color: #4DFFE2;
     transition: background 0.2s ease, color 0.2s ease;
     font-family: "Roboto", sans-serif;
 
-    &:hover {
-      background: $light-gray;
-    }
 
     &:disabled {
       opacity: 0.6;
@@ -216,20 +213,19 @@ $success-color: #4DFFE2;
     }
   }
 
-  .back-button {
+  .edit-my-profile-back-button {
     background: $background-white;
     border: 1px solid $text-color;
     color: $text-color;
 
     &:hover {
-      background: $light-gray;
+      text-decoration: underline;
     }
   }
 
   .delete-profile-container {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid $border-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -303,20 +299,5 @@ $success-color: #4DFFE2;
     gap: 8px;
   }
 
-  button {
-    background: $background-white;
-    border: 1px solid $error-color;
-    color: $error-color;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
 
-    &:hover {
-      text-decoration: underline;
-      background: $background-white;
-      color: $error-color;
-    }
-  }
 }

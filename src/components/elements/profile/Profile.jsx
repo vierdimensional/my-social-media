@@ -72,31 +72,31 @@ const Profile = () => {
                     className="profile-avatar"
                 />
                 <h2>{profileData?.fullName || "Unbekannter Benutzer"}</h2>
-                <p className="profile-job">{profileData?.jobTitle || ""}</p>
                 <p className="profile-bio">{profileData?.bio || "Keine Bio vorhanden"}</p>
             </div>
 
             <div className="profile-stats">
                 <div><strong>{profileData?.posts_count || 0}</strong> Beiträge</div>
-                <div><strong>{profileData?.followers || 0}</strong> Follower</div>
-                <div><strong>{profileData?.following || 0}</strong> Gefolgt</div>
+                <div><strong>{profileData?.followers || 0}</strong> Abonnenten</div>
+                <div><strong>{profileData?.following || 0}</strong> Abonnierte</div>
             </div>
 
             <div className="profile-menu">
                 <button className="menu-button" onClick={() => navigate("/myprofile")}>
-                    <FontAwesomeIcon icon={faUser} /> Profil
+                    <FontAwesomeIcon icon={faUser}/> Profil
                 </button>
                 <button className="menu-button" onClick={() => navigate(`/followers/${profileData.username}`)}>
-                    <FontAwesomeIcon icon={faUsers} /> Folgen mich
+                    <FontAwesomeIcon icon={faUsers}/> Abonnenten
                 </button>
                 <button className="menu-button" onClick={() => navigate(`/following/${profileData.username}`)}>
-                    <FontAwesomeIcon icon={faUserFriends} /> Folge ich
+                    <FontAwesomeIcon icon={faUserFriends}/> Abonnierte
+                </button>
+                <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>
+                    Profil bearbeiten
                 </button>
             </div>
 
-            <button className="profile-view-btn" onClick={() => navigate("/editmyprofile")}>
-                Profil bearbeiten
-            </button>
+
         </div>
     );
 };

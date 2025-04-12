@@ -13,6 +13,7 @@ import {
     faLink
 } from "@fortawesome/free-solid-svg-icons";
 import "./editMyProfile.scss";
+import Nav from "../../elements/nav/Nav";
 
 const EditMyProfile = () => {
     const { token } = useSelector((state) => state.user);
@@ -60,7 +61,6 @@ const EditMyProfile = () => {
                     age: userData.age || "",
                     bio: userData.bio || "",
                     fullName: userData.fullName || "",
-                    balance: userData.balance || "",
                 });
 
                 if (userData.avatar) {
@@ -225,184 +225,175 @@ const EditMyProfile = () => {
     }
 
     return (
-        <div className="edit-profile-container">
-            {success && (
-                <div className="success-message">
-                    <FontAwesomeIcon icon={faCheck} /> Änderungen erfolgreich gespeichert!
-                </div>
-            )}
-
-            {error && (
-                <div className="error-message">
-                    <FontAwesomeIcon icon={faExclamationTriangle} /> {error}
-                </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="edit-profile-form">
-                <h1 className="edit-profile-title">Profil bearbeiten</h1>
-
-                <div className="avatar-preview-container">
-                    {avatarPreview && (
-                        <div className="avatar-preview">
-                            <img src={avatarPreview} alt="Avatar Vorschau"/>
+        <div className="box-content">
+            <div>
+                <Nav/>
+                <div className="edit-profile-container">
+                    {success && (
+                        <div className="success-message">
+                            <FontAwesomeIcon icon={faCheck}/> Änderungen erfolgreich gespeichert!
                         </div>
                     )}
-                </div>
 
-                <div className="form-group">
-                    <label htmlFor="username">Benutzername:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={postData.username}
-                        onChange={handleChange}
-                        placeholder="Benutzername eingeben"
-                    />
-                </div>
+                    {error && (
+                        <div className="error-message">
+                            <FontAwesomeIcon icon={faExclamationTriangle}/> {error}
+                        </div>
+                    )}
 
-                <div className="form-group">
-                    <label htmlFor="fullName">Vollständiger Name:</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={postData.fullName}
-                        onChange={handleChange}
-                        placeholder="Vollständigen Namen eingeben"
-                    />
-                </div>
+                    <form onSubmit={handleSubmit} className="edit-profile-form">
+                        <h1 className="edit-profile-title">Profil bearbeiten</h1>
 
-                <div className="form-group">
-                    <label htmlFor="age">Alter:</label>
-                    <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        value={postData.age}
-                        onChange={handleChange}
-                        min="0"
-                        placeholder="Alter eingeben"
-                    />
-                </div>
+                        <div className="avatar-preview-container">
+                            {avatarPreview && (
+                                <div className="avatar-preview">
+                                    <img src={avatarPreview} alt="Avatar Vorschau"/>
+                                </div>
+                            )}
+                        </div>
 
-                <div className="form-group">
-                    <label htmlFor="bio">Über mich:</label>
-                    <textarea
-                        id="bio"
-                        name="bio"
-                        value={postData.bio}
-                        onChange={handleChange}
-                        placeholder="Erzähle etwas über dich"
-                        rows="4"
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="balance">Kontostand:</label>
-                    <input
-                        type="number"
-                        id="balance"
-                        name="balance"
-                        value={postData.balance}
-                        onChange={handleChange}
-                        min="0"
-                        step="0.01"
-                        placeholder="Kontostand eingeben"
-                    />
-                </div>
-
-                <div className="form-group avatar-group">
-                    <label>Avatar:</label>
-                    <div className="media-choice">
-                        <label className={`choice-option ${photoInputType === "url" ? "active" : ""}`}>
+                        <div className="form-group">
+                            <label htmlFor="username">Benutzername:</label>
                             <input
-                                type="radio"
-                                name="photoInputType"
-                                value="url"
-                                checked={photoInputType === "url"}
-                                onChange={() => setPhotoInputType("url")}
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={postData.username}
+                                onChange={handleChange}
+                                placeholder="Benutzername eingeben"
                             />
-                            <FontAwesomeIcon icon={faLink}/> URL eingeben
-                        </label>
-                        <label className={`choice-option ${photoInputType === "upload" ? "active" : ""}`}>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="fullName">Vollständiger Name:</label>
                             <input
-                                type="radio"
-                                name="photoInputType"
-                                value="upload"
-                                checked={photoInputType === "upload"}
-                                onChange={() => setPhotoInputType("upload")}
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                value={postData.fullName}
+                                onChange={handleChange}
+                                placeholder="Vollständigen Namen eingeben"
                             />
-                            <FontAwesomeIcon icon={faUpload}/> Datei hochladen
-                        </label>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="age">Alter:</label>
+                            <input
+                                type="number"
+                                id="age"
+                                name="age"
+                                value={postData.age}
+                                onChange={handleChange}
+                                min="0"
+                                placeholder="Alter eingeben"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="bio">Über mich:</label>
+                            <textarea
+                                id="bio"
+                                name="bio"
+                                value={postData.bio}
+                                onChange={handleChange}
+                                placeholder="Erzähle etwas über dich"
+                                rows="4"
+                            />
+                        </div>
+
+                        <div className="form-group avatar-group">
+                            <label>Avatar:</label>
+                            <div className="media-choice">
+                                <label className={`choice-option ${photoInputType === "url" ? "active" : ""}`}>
+                                    <input
+                                        type="radio"
+                                        name="photoInputType"
+                                        value="url"
+                                        checked={photoInputType === "url"}
+                                        onChange={() => setPhotoInputType("url")}
+                                    />
+                                    <FontAwesomeIcon icon={faLink}/> URL eingeben
+                                </label>
+                                <label className={`choice-option ${photoInputType === "upload" ? "active" : ""}`}>
+                                    <input
+                                        type="radio"
+                                        name="photoInputType"
+                                        value="upload"
+                                        checked={photoInputType === "upload"}
+                                        onChange={() => setPhotoInputType("upload")}
+                                    />
+                                    <FontAwesomeIcon icon={faUpload}/> Datei hochladen
+                                </label>
+                            </div>
+
+                            {photoInputType === "upload" ? (
+                                <div className="file-upload-container">
+                                    <input
+                                        type="file"
+                                        id="avatar-upload"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
+                                        className="file-input"
+                                    />
+                                    <label htmlFor="avatar-upload" className="file-upload-btn">
+                                        <FontAwesomeIcon icon={faUpload}/> Bild auswählen
+                                    </label>
+                                    {avatarFile && <span className="file-name">{avatarFile.name}</span>}
+                                </div>
+                            ) : (
+                                <input
+                                    type="text"
+                                    name="avatar"
+                                    value={postData.avatar}
+                                    onChange={handleChange}
+                                    placeholder="Geben Sie die URL des Bildes ein"
+                                />
+                            )}
+                        </div>
+
+                        <div className="button-group">
+
+                            <button
+                                type="submit"
+                                className="save-button"
+                                disabled={loading}
+                            >
+                                {loading ? (
+                                    <>
+                                        <FontAwesomeIcon icon={faSpinner} spin/> Speichern...
+                                    </>
+                                ) : (
+                                    <>
+                                        <FontAwesomeIcon icon={faSave}/> Änderungen speichern
+                                    </>
+                                )}
+                            </button>
+                            <button
+                                type="button"
+                                className="edit-my-profile-back-button"
+                                onClick={() => navigate("/MyProfile")}
+                            >
+                                <FontAwesomeIcon icon={faArrowLeft}/> Zurück zum Profil
+                            </button>
+                        </div>
+                    </form>
+
+                    <div className="delete-profile-container">
+                        <button
+                            className="delete-profile-btn"
+                            onClick={deleteProfile}
+                            disabled={loading}
+                        >
+                            <FontAwesomeIcon icon={faTrashAlt}/> Profil löschen
+                        </button>
+                        <p className="delete-warning">
+                            Achtung: Diese Aktion kann nicht rückgängig gemacht werden!
+                        </p>
                     </div>
-
-                    {photoInputType === "upload" ? (
-                        <div className="file-upload-container">
-                            <input
-                                type="file"
-                                id="avatar-upload"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                className="file-input"
-                            />
-                            <label htmlFor="avatar-upload" className="file-upload-btn">
-                                <FontAwesomeIcon icon={faUpload}/> Bild auswählen
-                            </label>
-                            {avatarFile && <span className="file-name">{avatarFile.name}</span>}
-                        </div>
-                    ) : (
-                        <input
-                            type="text"
-                            name="avatar"
-                            value={postData.avatar}
-                            onChange={handleChange}
-                            placeholder="Geben Sie die URL des Bildes ein"
-                        />
-                    )}
                 </div>
-
-                <div className="button-group">
-
-                    <button
-                        type="submit"
-                        className="save-button"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <>
-                                <FontAwesomeIcon icon={faSpinner} spin/> Speichern...
-                            </>
-                        ) : (
-                            <>
-                                <FontAwesomeIcon icon={faSave}/> Änderungen speichern
-                            </>
-                        )}
-                    </button>
-                    <button
-                        type="button"
-                        className="back-button"
-                        onClick={() => navigate("/MyProfile")}
-                    >
-                        <FontAwesomeIcon icon={faArrowLeft}/> Zurück zum Profil
-                    </button>
-                </div>
-            </form>
-
-            <div className="delete-profile-container">
-            <button
-                    className="delete-profile-btn"
-                    onClick={deleteProfile}
-                    disabled={loading}
-                >
-                    <FontAwesomeIcon icon={faTrashAlt} /> Profil löschen
-                </button>
-                <p className="delete-warning">
-                    Achtung: Diese Aktion kann nicht rückgängig gemacht werden!
-                </p>
             </div>
-        </div>
-    );
-};
+            </div>
+            );
+            };
 
-export default EditMyProfile;
+            export default EditMyProfile;

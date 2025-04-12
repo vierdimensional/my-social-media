@@ -1,18 +1,17 @@
-
-
-$primary-color: #FF6A4D;
-$light-gray: #f0f2f5;
-$text-color: #000000;
+$primary-color: #050505;
+$light-gray: #E8ECEF;
+$text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-
+$background-gray: #ddd;
+$error-color: #FF6A4D;
+$success-color: #4DFFE2;
 
 
 .new-post-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   background-color: $background-white;
   gap: 40px;
@@ -20,8 +19,7 @@ $background-white: #ffffff;
   font-family: "Roboto", sans-serif;
 }
 
-.new-post-form,
-.profile-buttons {
+.new-post-form {
   background-color: $background-white;
   width: 100%;
   padding: 20px;
@@ -41,34 +39,10 @@ $background-white: #ffffff;
 
 }
 
-.profile-buttons a {
-  width: 100%;
-}
-
-.profile-buttons button {
-  width: 100%;
-  padding: 12px;
-  background-color: $primary-color;
-  color: $background-white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-
-  &:hover {
-    text-decoration: underline;
-    background: $background-white;
-    color: $text-color;
-  }
-}
-
-h2 {
+.new-post-header {
   font-size: 24px;
   font-weight: bold;
   color: $text-color;
-  text-align: center;
   margin-bottom: 10px;
 }
 
@@ -77,7 +51,8 @@ h2 {
   color: $background-white;
   padding: 10px 15px;
   font-size: 16px;
-  border: none;
+  border: $primary-color;
+  border: 1px solid  $primary-color;
   border-radius: 4px;
   cursor: pointer;
   transition: text-decoration 0.3s ease;
@@ -89,5 +64,7 @@ h2 {
 
   &:hover {
     text-decoration: underline;
+    background: $background-white;
+    color: $primary-color;
   }
 }

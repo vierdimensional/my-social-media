@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import Search from "./elements/search/Search";
-import Nav from "./elements/nav/Nav";
 import Feed from "./pages/feed/Feed";
 import Posts from "./elements/posts/Posts";
 import MyProfile from "./pages/myProfile/MyProfile";
@@ -16,14 +15,11 @@ import "./app.scss";
 
 
 
-const AppContent = () => {
-    const location = useLocation();
-    const hideNav = location.pathname === "/signIn" || location.pathname === "/signUp";
-
+const App = () => {
     return (
-        <>
-            {!hideNav && <Nav />}
-            <Routes>
+        <div>
+            <BrowserRouter>
+                <Routes>
                 <Route path='/signIn' element={<SignIn />} />
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/myProfile' element={<MyProfile />} />
@@ -35,19 +31,9 @@ const AppContent = () => {
                 <Route path='/posts' element={<Posts />} />
                 <Route path='*' element={<NotFoundPage />} />
                 <Route path='/userprofile/:username' element={<UserProfile />} />
-
-
-
-            </Routes>
-        </>
-    );
-};
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <AppContent />
-        </BrowserRouter>
+                </Routes>
+            </BrowserRouter>
+        </div>
     );
 };
 

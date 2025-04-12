@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from "react-redux"; // Korrekter Import für useDispatch
+import { useDispatch } from "react-redux";
 import { setToken } from "../../../features/features";
 import "./signIn.scss";
 
@@ -16,7 +16,7 @@ const SignIn = () => {
     const [serverError, setServerError] = useState("");
 
     const onSubmit = async (data) => {
-        setServerError(""); // Zurücksetzen des Fehlers
+        setServerError("");
         try {
             const response = await fetch("http://49.13.31.246:9191/signin", {
                 method: "POST",

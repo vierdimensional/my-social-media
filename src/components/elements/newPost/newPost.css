@@ -1,7 +1,6 @@
 .new-post-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   background-color: #ffffff;
   gap: 40px;
@@ -9,8 +8,7 @@
   font-family: "Roboto", sans-serif;
 }
 
-.new-post-form,
-.profile-buttons {
+.new-post-form {
   background-color: #ffffff;
   width: 100%;
   padding: 20px;
@@ -29,42 +27,20 @@
   font-family: "Roboto", sans-serif;
 }
 
-.profile-buttons a {
-  width: 100%;
-}
-
-.profile-buttons button {
-  width: 100%;
-  padding: 12px;
-  background-color: #FF6A4D;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.profile-buttons button:hover {
-  text-decoration: underline;
-  background: #ffffff;
-  color: #000000;
-}
-
-h2 {
+.new-post-header {
   font-size: 24px;
   font-weight: bold;
-  color: #000000;
-  text-align: center;
+  color: #050505;
   margin-bottom: 10px;
 }
 
 .new-post-button {
-  background: #000000;
+  background: #050505;
   color: #ffffff;
   padding: 10px 15px;
   font-size: 16px;
-  border: none;
+  border: #050505;
+  border: 1px solid #050505;
   border-radius: 4px;
   cursor: pointer;
   transition: text-decoration 0.3s ease;
@@ -76,6 +52,8 @@ h2 {
 }
 .new-post-button:hover {
   text-decoration: underline;
+  background: #ffffff;
+  color: #050505;
 }
 
 /*# sourceMappingURL=newPost.css.map */

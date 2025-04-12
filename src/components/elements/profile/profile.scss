@@ -4,7 +4,8 @@ $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 .profile-card {
@@ -13,8 +14,14 @@ $success-color: #4DFFE2;
   overflow: hidden;
   text-align: start;
   font-family: "Roboto", sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+
+}
+
+.sidebar-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-header {
@@ -30,19 +37,21 @@ $success-color: #4DFFE2;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid $light-gray;
-  margin-bottom: 10px;
+}
+
+h2{
+  font-size: 24px;
+  color: $text-color;
 }
 
 .profile-job {
   color: $secondary-text-color;
-  font-size: 15px;
-  margin-top: 5px;
 }
 
 .profile-bio {
-  font-size: 14px;
+  font-size: 18px;
   color: $text-color;
-  padding: 10px 15px;
+  text-align: center;
   line-height: 1.4;
 }
 
@@ -52,24 +61,7 @@ $success-color: #4DFFE2;
   padding: 12px 0;
   border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
-
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .stat-value {
-      font-size: 16px;
-      font-weight: bold;
-      color: $text-color;
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: $secondary-text-color;
-    }
   }
-}
 
 .profile-menu {
   display: flex;
@@ -77,47 +69,49 @@ $success-color: #4DFFE2;
   width: 100%;
   gap: 10px;
   padding: 10px;
+  }
 
-  button {
-    width: 100%;
-    padding: 10px;
-    background: $background-white;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-    font-size: 14px;
-    color: $text-color;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+.menu-button {
+  width: 100%;
+  padding: 10px;
+  background: $background-white;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  font-size: 14px;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 
-    &:hover {
-      background: $light-gray;
-    }
+  &:hover {
+    background: $light-gray;
   }
 }
 
 .profile-view-btn {
   width: 100%;
-  background: $text-color;
+  background: $primary-color;
   color: $background-white;
-  border: none;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 2px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: $primary-color;
+  border: 1px solid  $primary-color;
+  border-radius: 4px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: text-decoration 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
 
   &:hover {
-    background: $primary-color;
+    text-decoration: underline;
+    background: $background-white;
+    color: $primary-color;
   }
 }
 
-.profile-footer {
-  font-size: 12px;
-  color: $secondary-text-color;
-  padding: 10px;
-  text-align: center;
-}

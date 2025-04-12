@@ -27,7 +27,7 @@
 .edit-profile-container .success-message.error-message,
 .edit-profile-container .error-message.error-message {
   background-color: white;
-  color: #FF4D58;
+  color: #FF6A4D;
 }
 .edit-profile-container .edit-profile-form {
   background: #ffffff;
@@ -43,15 +43,13 @@
   display: flex;
   justify-content: center;
 }
-.edit-profile-container .edit-profile-form .avatar-preview-container .avatar-preview {
-  border-radius: 50%;
-}
 .edit-profile-container .edit-profile-form .avatar-preview-container .avatar-preview img {
   width: 120px;
   height: 120px;
   object-fit: cover;
   border: 2px solid #E8ECEF;
   border-radius: 4px;
+  border-radius: 50%;
 }
 .edit-profile-container .edit-profile-form .avatar-preview-container image {
   border-radius: 50%;
@@ -82,7 +80,7 @@
 .edit-profile-container .edit-profile-form .form-group input:focus,
 .edit-profile-container .edit-profile-form .form-group textarea:focus {
   outline: none;
-  border-color: #FF6A4D;
+  border-color: #050505;
 }
 .edit-profile-container .edit-profile-form .form-group textarea {
   resize: vertical;
@@ -112,8 +110,8 @@
   margin: 0;
 }
 .edit-profile-container .edit-profile-form .avatar-group .media-choice .choice-option.active {
-  background: rgb(255, 234.0730337079, 230);
-  color: #FF6A4D;
+  background: #E8ECEF;
+  color: #050505;
 }
 .edit-profile-container .edit-profile-form .avatar-group .file-upload-container {
   display: flex;
@@ -166,9 +164,6 @@
   transition: background 0.2s ease, color 0.2s ease;
   font-family: "Roboto", sans-serif;
 }
-.edit-profile-container button:hover {
-  background: #E8ECEF;
-}
 .edit-profile-container button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -179,20 +174,19 @@
   border: none;
 }
 .edit-profile-container .save-button:hover {
-  background: #FF6A4D;
+  background: #050505;
 }
-.edit-profile-container .back-button {
+.edit-profile-container .edit-my-profile-back-button {
   background: #ffffff;
   border: 1px solid #050505;
   color: #050505;
 }
-.edit-profile-container .back-button:hover {
-  background: #E8ECEF;
+.edit-profile-container .edit-my-profile-back-button:hover {
+  text-decoration: underline;
 }
 .edit-profile-container .delete-profile-container {
   margin-top: 20px;
   padding-top: 15px;
-  border-top: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,7 +215,7 @@
 .edit-profile-container .delete-profile-container .delete-warning {
   margin-top: 8px;
   font-size: 12px;
-  color: #FF4D58;
+  color: #FF6A4D;
   text-align: center;
 }
 .edit-profile-container .profile-footer {
@@ -252,27 +246,12 @@
   font-family: "Roboto", sans-serif;
 }
 .profile-error p {
-  color: #FF4D58;
+  color: #FF6A4D;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-}
-.profile-error button {
-  background: #ffffff;
-  border: 1px solid #FF4D58;
-  color: #FF4D58;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-.profile-error button:hover {
-  text-decoration: underline;
-  background: #ffffff;
-  color: #FF4D58;
 }
 
 /*# sourceMappingURL=editMyProfile.css.map */

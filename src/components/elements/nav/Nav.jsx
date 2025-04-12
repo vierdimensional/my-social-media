@@ -50,7 +50,7 @@ const Nav = () => {
 
                 <div className="nav-section nav-right">
                     <Link to="/myprofile" className="nav-link">
-                        <FontAwesomeIcon icon={faUser} /> Profil
+                        <FontAwesomeIcon icon={faUser} /> Mein Profil
                     </Link>
                 </div>
 

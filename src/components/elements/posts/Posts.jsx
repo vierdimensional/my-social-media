@@ -199,7 +199,7 @@ const Posts = () => {
                                                         className="followers-btn"
                                                         onClick={() => navigate(`/followers/${post.user[0].username}`)}
                                                     >
-                                                        <FontAwesomeIcon icon={faUserGroup} /> {post.user[0].followers?.length || 0} Follower
+                                                        <FontAwesomeIcon icon={faUserGroup} /> {post.user[0].followers?.length || 0} Abonnenten
                                                     </button>
                                                 </div>
 
@@ -209,7 +209,7 @@ const Posts = () => {
                                                         className="following-btn"
                                                         onClick={() => navigate(`/following/${post.user[0].username}`)}
                                                     >
-                                                        <FontAwesomeIcon icon={faUserPlus} /> {post.user[0].following?.length || 0} Gefolgt
+                                                        <FontAwesomeIcon icon={faUserPlus} /> {post.user[0].following?.length || 0} Abonnierte
                                                     </button>
                                                 </div>
                                             </div>
@@ -240,8 +240,8 @@ const Posts = () => {
                                             {isLikedByUser ? " Gefällt mir" : " Gefällt mir"}
                                         </button>
                                         {token && post.user?.[0]?._id === user._id && (
-                                            <button className="delete_btn" onClick={() => deletePost(post._id)}>
-                                                <FontAwesomeIcon icon={faTrashAlt} /> Löschen
+                                            <button className="delete-btn" onClick={() => deletePost(post._id)}>
+                                                <FontAwesomeIcon icon={faTrashAlt} color={"red"} /> Löschen
                                             </button>
                                         )}
                                     </div>

@@ -106,7 +106,7 @@ const User = () => {
 
     return (
         <div className="user-list-container">
-            <h2 className="uberschrift_user">
+            <h2 className="title-user">
                 <FontAwesomeIcon icon={faUsers} /> Alle User
             </h2>
 

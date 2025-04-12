@@ -5,6 +5,7 @@ import "./followings.scss"; // Falls du ein separates followings.scss hast, kann
 import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import Nav from "../../elements/nav/Nav";
 
 const Followings = () => {
     const { token } = useSelector((state) => state.user);
@@ -37,11 +38,11 @@ const Followings = () => {
                 if (Array.isArray(data.following)) {
                     setFollowing(data.following);
                 } else {
-                    console.warn("⚠️ Keine gültigen Daten gefunden.");
+                    console.warn("⚠️ Keine Abonnierte gefunden.");
                     setFollowing([]);
                 }
             } catch (err) {
-                console.error("❌ Fehler beim Abrufen der Gefolgten:", err.message);
+                console.error("❌ Fehler beim Abrufen der Abonnierten:", err.message);
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -53,36 +54,42 @@ const Followings = () => {
 
     if (loading) return <div className="followers-loading">⏳ Lädt...</div>;
     if (error) return <div className="followers-error">{error}</div>;
-    if (following.length === 0) return <div className="followers-empty">❌ Keine gefolgten Nutzer gefunden.</div>;
+    if (following.length === 0) return <div className="followers-empty">❌ Keine Abonnierte gefunden.</div>;
 
     return (
-        <div className="followers-container">
-            <h2>
-                <FontAwesomeIcon icon={faUserPlus}/> Gefolgt von @{username}
-            </h2>
+        <div className="box-content">
+            <div>
+                <Nav/>
 
-            <div className="followers-list">
-                {following.map((followed) => (
-                    <div
-                        key={followed._id}
-                        className="follower-card"
-                        onClick={() => navigate(`/userprofile/${followed.username}`)}
-                    >
-                        <img
-                            src={followed.avatar || avatar}
-                            alt={`${followed.username} Avatar`}
-                            className="follower-avatar"
-                        />
-                        <div className="follower-info">
-                            <h4>{followed.fullName || "Ohne Name"}</h4>
-                            <p>@{followed.username}</p>
-                        </div>
+                <div className="followers-container">
+                    <h2>
+                        <FontAwesomeIcon icon={faUserPlus}/> Abonnierte von @{username}
+                    </h2>
+
+                    <div className="followers-list">
+                        {following.map((followed) => (
+                            <div
+                                key={followed._id}
+                                className="follower-card"
+                                onClick={() => navigate(`/userprofile/${followed.username}`)}
+                            >
+                                <img
+                                    src={followed.avatar || avatar}
+                                    alt={`${followed.username} Avatar`}
+                                    className="follower-avatar"
+                                />
+                                <div className="follower-info">
+                                    <h4>{followed.fullName?.trim() || ""}</h4>
+                                    <p>@{followed.username}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                    <button className="followings-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
+                </div>
             </div>
-            <button className="followings-back-btn" onClick={() => navigate(-1)}>⬅ Zurück</button>
         </div>
-    );
-};
+            );
+            };
 
-export default Followings;
+            export default Followings;

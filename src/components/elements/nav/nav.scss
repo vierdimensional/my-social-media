@@ -1,10 +1,11 @@
-$primary-color: #FF6A4D;
+$primary-color: #050505;
 $light-gray: #E8ECEF;
 $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 .nav-container {
@@ -12,7 +13,7 @@ $success-color: #4DFFE2;
   top: 0;
   z-index: 1000;
   background-color: $background-white;
-  padding: 10px 40px;
+  padding: 40px 0px;
 }
 
 .nav {

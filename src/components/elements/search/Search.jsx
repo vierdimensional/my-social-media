@@ -6,7 +6,6 @@ import avatar from "../../../assets/img/sbcf-default-avatar.png";
 import "./search.scss";
 import Nav from "../../elements/nav/Nav";
 
-// Font Awesome Imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faSpinner, faTriangleExclamation, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,11 +19,9 @@ const Search = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // ✅ Hole den query-Parameter aus der URL
     const params = new URLSearchParams(location.search);
     const query = params.get("query")?.toLowerCase() || "";
 
-    // 📌 Lade die Abonnements des Benutzers
     useEffect(() => {
         if (!token) return;
 
@@ -43,7 +40,6 @@ const Search = () => {
         fetchFollowing();
     }, [token, username]);
 
-    // 📌 Suche nach Benutzern
     useEffect(() => {
         if (!query) {
             setResults([]);
@@ -73,31 +69,8 @@ const Search = () => {
         fetchUsers();
     }, [query, token]);
 
-    // 📌 Abonnieren / Abbestellen
-    const toggleFollow = async (username) => {
-        const isFollowing = following.has(username);
-        const url = `http://49.13.31.246:9191/${isFollowing ? "unfollow" : "follow"}`;
-
-        try {
-            await axios.post(url, { username }, { headers: { "x-access-token": token } });
-
-            setFollowing((prev) => {
-                const updatedSet = new Set(prev);
-                if (isFollowing) {
-                    updatedSet.delete(username);
-                } else {
-                    updatedSet.add(username);
-                }
-                return updatedSet;
-            });
-        } catch (err) {
-            console.error(`Fehler beim ${isFollowing ? "Abbestellen" : "Abonnieren"}:`, err);
-        }
-    };
-
-    // 📌 Zum Benutzerprofil navigieren
     const handleUserClick = (user) => {
-        navigate(`/user/${user.username}`);
+        navigate(`/userprofile/${user.username}`);
     };
 
     return (
@@ -119,7 +92,6 @@ const Search = () => {
                     </p>
                 )}
 
-                {/* ✅ Liste der gefundenen Benutzer */}
                 <ul className="search-results">
                     {results.map((user) => (
                         <div className="user-card-search">
@@ -131,9 +103,8 @@ const Search = () => {
                     ))}
                 </ul>
 
-                {/* ✅ Button "Zurück zum Feed" */}
                 <button className="back-to-feed-btn" onClick={() => navigate("/feed")}>
-                    <FontAwesomeIcon icon={faArrowLeft} /> Zurück zum Feed
+                    <FontAwesomeIcon icon={faArrowLeft} /> Zurück
                 </button>
             </div>
         </div>

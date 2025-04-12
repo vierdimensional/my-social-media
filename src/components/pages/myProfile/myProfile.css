@@ -24,17 +24,13 @@
   align-items: center;
   text-align: center;
 }
-.my-profile-card .my-profile-header .avatar-container {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
 .my-profile-card .my-profile-header .my-profile-avatar {
   width: 120px;
   height: 120px;
   object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #E8ECEF;
 }
 .my-profile-card .my-profile-header .my-post-image {
   width: 400px;
@@ -60,15 +56,6 @@
   margin: 10px 0;
   line-height: 1.5;
   max-width: 400px;
-}
-.my-profile-card .my-profile-header .my-profile-balance {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #65676b;
-}
-.my-profile-card .my-profile-header .my-profile-balance .balance-amount {
-  font-weight: bold;
-  color: #050505;
 }
 .my-profile-card .my-profile-stats {
   display: flex;
@@ -176,7 +163,7 @@
   background: #ffffff;
   color: #050505;
 }
-.my-profile-card .one-user-back-btn {
+.my-profile-card .my-profile-back-btn {
   background: #ffffff;
   color: #050505;
   padding: 10px 15px;
@@ -191,7 +178,7 @@
   flex: 1;
   justify-content: center;
 }
-.my-profile-card .one-user-back-btn:hover {
+.my-profile-card .my-profile-back-btn:hover {
   text-decoration: underline;
   background: #ffffff;
   color: #050505;
@@ -220,7 +207,7 @@
   text-align: center;
   margin: 20px auto;
   max-width: 600px;
-  color: #FF4D58;
+  color: #FF6A4D;
 }
 
 .my-profile-posts {

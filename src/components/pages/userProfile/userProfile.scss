@@ -22,26 +22,103 @@ $success-color: #4DFFE2;
 }
 
 .one-user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: 20px;
 
   .one-user-avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
+    border: 2px solid $light-gray;
   }
 
   .one-user-name {
-    font-size: 24px;
+    margin: 10px 0 5px;
+    font-size:24px;
     color: $text-color;
-    margin-bottom: 10px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 18px;
     color: $text-color;
     margin: 5px 0;
+  }
+}
+
+.one-user-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+}
+
+.feed-post {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.one-user-follow-btn {
+  background: $text-color;
+  border: 1px solid $text-color;
+  color: $background-white;
+  padding: 10px 15px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    text-decoration: underline;
+    background: $background-white;
+    color: $text-color;
+  }
+}
+
+.one-user-follow-statistics {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.user-profile-followers-btn {
+  font-size: 18px;
+  background: $background-white;
+  border: none;
+
+  &:hover {
+    text-decoration: underline;
+}
+}
+
+.user-profile-following-btn {
+  font-size: 18px;
+  background: $background-white;
+  border: none;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -50,38 +127,17 @@ $success-color: #4DFFE2;
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
+  font-size: 18px;
 
-  .one-user-follow-btn {
+  .one-user-follow {
+    background: $primary-color;
+    color: $background-white;
     padding: 10px 15px;
-    border: none;
     border-radius: 4px;
-    font-size: 14px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.3s ease;
 
-    &.one-user-follow {
-      background: $primary-color;
-      color: $background-white;
-
-      &:hover {
-        border: 1px solid $primary-color;
-      }
-    }
-
-    &.one-user-unfollow {
-      background-color: $background-white;
-      color: $text-color;
+    &:hover {
       border: 1px solid $primary-color;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: underline;
-        border: 1px solid $primary-color;
-        background: $light-gray;
-      }
     }
   }
 
@@ -90,7 +146,7 @@ $success-color: #4DFFE2;
     border: 1px solid $text-color;
     color: $text-color;
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 18px;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -108,7 +164,7 @@ $success-color: #4DFFE2;
 
 .one-user-loading {
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: $secondary-text-color;
 }
 

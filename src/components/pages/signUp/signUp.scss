@@ -1,10 +1,11 @@
-$primary-color: #FF6A4D;
+$primary-color: #050505;
 $light-gray: #E8ECEF;
 $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 .signup-page {
@@ -13,7 +14,7 @@ $success-color: #4DFFE2;
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: $text-color; // #050505 ersetzt #000000
+  background-color: $background-white;
   padding: 20px;
 }
 
@@ -61,7 +62,7 @@ $success-color: #4DFFE2;
 .signup-input:focus {
   outline: none;
   border-color: $primary-color;
-  box-shadow: 0 0 8px rgba($primary-color, 1);
+  box-shadow: 0 0 8px rgba($secondary-text-color, 0.5);
 }
 
 .signup-error {
@@ -86,7 +87,7 @@ $success-color: #4DFFE2;
 
 .signup-button:hover {
   background-color: $primary-color;
-  box-shadow: 0 0 8px rgba($primary-color, 1);
+  box-shadow: 0 0 8px rgba($secondary-text-color, 0.5);
 }
 
 .signup-switch-button {

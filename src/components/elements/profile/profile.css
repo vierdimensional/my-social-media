@@ -4,8 +4,13 @@
   overflow: hidden;
   text-align: start;
   font-family: "Roboto", sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+.sidebar-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-header {
@@ -21,19 +26,21 @@
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #E8ECEF;
-  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #050505;
 }
 
 .profile-job {
   color: #65676b;
-  font-size: 15px;
-  margin-top: 5px;
 }
 
 .profile-bio {
-  font-size: 14px;
+  font-size: 18px;
   color: #050505;
-  padding: 10px 15px;
+  text-align: center;
   line-height: 1.4;
 }
 
@@ -44,20 +51,6 @@
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
-.profile-stats .stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.profile-stats .stat-item .stat-value {
-  font-size: 16px;
-  font-weight: bold;
-  color: #050505;
-}
-.profile-stats .stat-item .stat-label {
-  font-size: 13px;
-  color: #65676b;
-}
 
 .profile-menu {
   display: flex;
@@ -66,7 +59,8 @@
   gap: 10px;
   padding: 10px;
 }
-.profile-menu button {
+
+.menu-button {
   width: 100%;
   padding: 10px;
   background: #ffffff;
@@ -81,7 +75,7 @@
   cursor: pointer;
   transition: background 0.2s ease;
 }
-.profile-menu button:hover {
+.menu-button:hover {
   background: #E8ECEF;
 }
 
@@ -89,22 +83,23 @@
   width: 100%;
   background: #050505;
   color: #ffffff;
-  border: none;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 2px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: #050505;
+  border: 1px solid #050505;
+  border-radius: 4px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: text-decoration 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
 }
 .profile-view-btn:hover {
-  background: #050505;
-}
-
-.profile-footer {
-  font-size: 12px;
-  color: #65676b;
-  padding: 10px;
-  text-align: center;
+  text-decoration: underline;
+  background: #ffffff;
+  color: #050505;
 }
 
 /*# sourceMappingURL=profile.css.map */

@@ -4,7 +4,8 @@ $text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
-$error-color: #FF4D58;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
 $success-color: #4DFFE2;
 
 * {
@@ -65,14 +66,14 @@ body {
 }
 
 .post-title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   margin: 0;
   text-align: left;
 }
 
 .post-description {
-  font-size: 16px;
+  font-size: 18px;
   color: $primary-color;
   text-align: left;
   line-height: 1.5;
@@ -136,7 +137,7 @@ body {
 }
 
 .like-button,
-.delete_btn {
+.delete-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -144,14 +145,6 @@ body {
   display: flex;
   align-items: center;
   gap:15px;
-}
-
-.delete_btn {
-  color: #d00;
-
-  &:hover {
-    color: #900;
-  }
 }
 
 
@@ -165,6 +158,8 @@ body {
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #E8ECEF;
+
 }
 
 .post-likes,
@@ -194,7 +189,7 @@ body {
 
 .author-name {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 24px;
   color: $text-color;
 }
 

@@ -1,11 +1,12 @@
-
-
-$primary-color: #FF6A4D;
-$light-gray: #f0f2f5;
-$text-color: #000000;
+$primary-color: #050505;
+$light-gray: #E8ECEF;
+$text-color: #050505;
 $secondary-text-color: #65676b;
 $border-color: #ddd;
 $background-white: #ffffff;
+$background-gray: #ddd;
+$error-color: #FF6A4D;
+$success-color: #4DFFE2;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -22,6 +23,7 @@ body, html {
   width: 100%;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
+  background-color: $background-white;
 
 }
 
