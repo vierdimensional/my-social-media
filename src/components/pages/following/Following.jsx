@@ -92,4 +92,4 @@ const Followings = () => {
             );
             };
 
-            export default Followings;
+export default Followings;

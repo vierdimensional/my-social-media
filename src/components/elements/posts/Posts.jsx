@@ -186,14 +186,12 @@ const Posts = () => {
                                                     />
                                                 </div>
 
-                                                {/* Name */}
                                                 <div className="author-column name">
                                                     <span className="author-name">
                                                         {post.user[0].fullName || post.user[0].username}
                                                     </span>
                                                 </div>
 
-                                                {/* Follower */}
                                                 <div className="author-column followers">
                                                     <button
                                                         className="followers-btn"
@@ -203,7 +201,6 @@ const Posts = () => {
                                                     </button>
                                                 </div>
 
-                                                {/* Following */}
                                                 <div className="author-column following">
                                                     <button
                                                         className="following-btn"

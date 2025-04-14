@@ -34,7 +34,6 @@ const EditMyProfile = () => {
     const [avatarFile, setAvatarFile] = useState(null);
     const [avatarPreview, setAvatarPreview] = useState(null);
 
-    // Lade aktuelle Profildaten beim Komponenten-Mount
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
@@ -396,4 +395,4 @@ const EditMyProfile = () => {
             );
             };
 
-            export default EditMyProfile;
+export default EditMyProfile;

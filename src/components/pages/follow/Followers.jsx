@@ -89,4 +89,4 @@ const Followers = () => {
             );
             };
 
-            export default Followers;
+export default Followers;

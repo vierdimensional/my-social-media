@@ -27,14 +27,12 @@ const Nav = () => {
     return (
         <div className="nav-container">
             <nav className="nav">
-                {/* Home-Link */}
                 <div className="nav-section nav-start">
                     <Link to="/feed" className="nav-link">
                         <FontAwesomeIcon icon={faHome} /> Home
                     </Link>
                 </div>
 
-                {/* Suchfeld */}
                 <div className="nav-section nav-center">
                     <form className="search-form" onSubmit={handleSearch}>
                         <input
@@ -50,7 +48,6 @@ const Nav = () => {
                     </form>
                 </div>
 
-                {/* Links zu Mein Profil und Alle Nutzer */}
                 <div className="nav-section nav-right">
                     <Link to="/myprofile" className="nav-link">
                         <FontAwesomeIcon icon={faUser} /> Mein Profil
@@ -60,7 +57,6 @@ const Nav = () => {
                     </Link>
                 </div>
 
-                {/* Logout-Button */}
                 <div className="nav-section nav-end">
                     <button className="logout-btn" onClick={handleLogout}>
                         <FontAwesomeIcon icon={faSignOutAlt} /> Abmelden
